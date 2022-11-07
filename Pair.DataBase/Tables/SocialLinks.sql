@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[SocialLinks]
+(
+	[Id] INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
+	[PersonId] INT NULL FOREIGN KEY REFERENCES Persons(Id),
+	[Name] VARCHAR(25),
+	[Link] VARCHAR(255)
+)
