@@ -15,7 +15,9 @@ namespace Pair.Core.ORM
 
         Task<T> Get(int id);
 
-        Task<IEnumerable<T>> LoadTable();
+        Task<IEnumerable<T>> Get();
+
+        Task<bool> Delete(T entity);
 
     }
 }

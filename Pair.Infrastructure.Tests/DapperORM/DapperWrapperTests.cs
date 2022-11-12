@@ -1,4 +1,7 @@
 ﻿using AutoFixture;
+using Moq;
+using Pair.Core.Models;
+using Pair.Core.ORM;
 using Pair.Infrastructure.DapperORM;
 using Pair.Infrastructure.Entities;
 using System;
@@ -12,26 +15,38 @@ namespace Pair.Infrastructure.Tests.DapperORM
 {
     public class DapperWrapperTests
     {
-        private readonly DapperWrapper _dapperWrapper;
+        private readonly IOrmWrapper<Persons> _dapper;
 
         public DapperWrapperTests()
         {
-            _dapperWrapper = new DapperWrapper(new SqlConnection(@"Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False"));
+            _dapper = new DapperWrapper<Persons>(new SqlConnection(@"Server=localhost;Database=PairTest;Integrated Security=true;"));
         }
 
         [Fact]
-        public async void InserShould_ReturnsId()
+        public async void InsertShould_ReturnsId()
         {
             var person = new Fixture()
                 .Build<Persons>()
-                .With(p => p.Sex, "dsdas")
-                .With(p => p.Name, "dasdas")
-                .With(p => p.Age, 54)
+                .With(p => p.Name, "Name")
+                .With(p => p.Age, new Random().Next(0, 100))
+                .With(p => p.Sex, "Helicopter")
                 .Create();
 
-            var id = await _dapperWrapper.Insert<Persons>(person);
+            var ormMock = new Mock<IOrmWrapper<Persons>>();
 
-            Assert.Equal(1, id);
+            ormMock.Setup(p => p.Insert(person)).ReturnsAsync(1);
+
+            var id = await ormMock.Object.Insert(person);
+
+            var actualId = await _dapper.Insert(person);
+
+            Assert.True(id == actualId);
+        }
+
+        [Fact]
+        public async void GetShould_ReturnsEntity()
+        {
+            
         }
     }
 }
