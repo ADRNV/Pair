@@ -12,6 +12,9 @@ namespace Pair.Infrastructure.DapperORM.Maps
             Map(s => s.Id)
                 .IsKey()
                 .IsIdentity();
+
+            Map(s => s.Person)
+                .Ignore();
         }
     }
 }
