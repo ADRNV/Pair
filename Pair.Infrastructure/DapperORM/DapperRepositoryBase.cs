@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace Pair.Infrastructure.DapperORM
 {
-    internal abstract class DapperRepositoryBase<TEntity> : IOrmWrapper<TEntity> where TEntity : class
+    public abstract class DapperRepositoryBase<TEntity> : IOrmWrapper<TEntity> where TEntity : class
     {
         private readonly IConfiguration _configuration;
         protected readonly SqlConnection _connection;
@@ -22,7 +22,7 @@ namespace Pair.Infrastructure.DapperORM
                 FluentMapper.Initialize(c =>
                 {
                     c.AddMap(new PersonDapperMap());
-                    c.AddMap(new PersonDapperMap());
+                    c.AddMap(new SoclialLinkDapperMap());
                     c.ForDommel();
                 });
             }
@@ -30,11 +30,11 @@ namespace Pair.Infrastructure.DapperORM
             _connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
         }
 
-        public async Task<int> Insert(TEntity obj)
+        public async Task<decimal> Insert(TEntity obj)
         {
             var id = await _connection.InsertAsync(obj);
 
-            return (int)id;
+            return (decimal)id;
         }
 
         public async virtual Task<IEnumerable<TEntity>> Get() =>

@@ -1,5 +1,5 @@
 ﻿using Dapper.FluentMap.Dommel.Mapping;
-using Pair.Infrastructure.Entities;
+using Pair.Core.Models;
 
 namespace Pair.Infrastructure.DapperORM.Maps
 {

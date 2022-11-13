@@ -1,5 +1,5 @@
 ﻿using Dapper.FluentMap.Dommel.Mapping;
-using Pair.Infrastructure.Entities;
+using Pair.Core.Models;
 
 namespace Pair.Infrastructure.DapperORM.Maps
 {
@@ -11,6 +11,8 @@ namespace Pair.Infrastructure.DapperORM.Maps
             Map(p => p.Id)
                 .IsKey()
                 .IsIdentity();
+            Map(p => p.SocialLinks)
+                .Ignore();
         }
     }
 }

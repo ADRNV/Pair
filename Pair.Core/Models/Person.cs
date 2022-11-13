@@ -6,7 +6,11 @@
 
         public string Name { get; set; } = string.Empty;
 
+        public string? Bio { get; set; } 
+
         public int Age { get; set; }
+
+        public IList<SocialLink>? SocialLinks { get; set; }
 
         public string Sex { get; set; } = string.Empty;
     }
