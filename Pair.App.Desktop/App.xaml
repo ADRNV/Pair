@@ -1,0 +1,29 @@
+﻿<Application x:Class="Pair.App.Desktop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Pair.App.Desktop"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <sys:String x:Key="Search">Поиск:</sys:String>
+            <sys:String x:Key="Actions">Действия</sys:String>
+            <sys:String x:Key="Tables">Таблицы</sys:String>
+            <sys:String x:Key="Add">Добавить</sys:String>
+            <sys:String x:Key="Edit">Редактировать</sys:String>
+            <sys:String x:Key="Delete">Удалить</sys:String>
+            <sys:String x:Key="Name">Имя</sys:String>
+            <sys:String x:Key="Bio">О себе</sys:String>
+            <sys:String x:Key="Age">Возраст</sys:String>
+            <sys:String x:Key="Sex">Пол</sys:String>
+            <sys:String x:Key="Apply">Применить</sys:String>
+            <sys:String x:Key="Cancel">Отменить</sys:String>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
