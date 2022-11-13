@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace Pair.Infrastructure.DapperORM
 {
-    internal abstract class DapperRepositoryBase<TEntity> : IOrmWrapper<TEntity> where TEntity : class 
+    internal abstract class DapperRepositoryBase<TEntity> : IOrmWrapper<TEntity> where TEntity : class
     {
         private readonly IConfiguration _configuration;
         protected readonly SqlConnection _connection;
@@ -32,11 +32,11 @@ namespace Pair.Infrastructure.DapperORM
 
         public async Task<int> Insert(TEntity obj)
         {
-           var id = await _connection.InsertAsync(obj);
+            var id = await _connection.InsertAsync(obj);
 
-           return (int)id;
+            return (int)id;
         }
-            
+
         public async virtual Task<IEnumerable<TEntity>> Get() =>
             await _connection.GetAllAsync<TEntity>();
 

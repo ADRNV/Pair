@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pair.Infrastructure.Entities
+﻿namespace Pair.Infrastructure.Entities
 {
     public class SocialLink
     {

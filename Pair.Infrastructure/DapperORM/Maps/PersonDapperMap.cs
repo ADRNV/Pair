@@ -1,5 +1,4 @@
 ﻿using Dapper.FluentMap.Dommel.Mapping;
-using Dommel;
 using Pair.Infrastructure.Entities;
 
 namespace Pair.Infrastructure.DapperORM.Maps
