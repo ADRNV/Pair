@@ -1,6 +1,8 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
 using Pair.Core.Models;
+using Pair.Core.ORM;
+using System.Data;
 
 namespace Pair.Infrastructure.DapperORM
 {
@@ -9,6 +11,11 @@ namespace Pair.Infrastructure.DapperORM
         public PersonsRepository(IConfiguration configuration) : base(configuration)
         {
            
+        }
+
+        public PersonsRepository(IDbConnectionFactory connectionFactory) : base(connectionFactory)
+        {
+
         }
 
         public async override Task<IEnumerable<Person>> Get()

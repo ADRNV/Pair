@@ -4,19 +4,39 @@ using Dommel;
 using Microsoft.Extensions.Configuration;
 using Pair.Core.ORM;
 using Pair.Infrastructure.DapperORM.Maps;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Pair.Infrastructure.DapperORM
 {
-    public abstract class DapperRepositoryBase<TEntity> : IOrmWrapper<TEntity> where TEntity : class
+    public abstract class DapperRepositoryBase<TEntity> : IOrmWrapper<TEntity>, IDisposable where TEntity : class
     {
         private readonly IConfiguration _configuration;
-        protected readonly SqlConnection _connection;
 
+        protected readonly IDbConnection _connection;
+        
+        protected readonly IDbConnectionFactory _dbConnectionFactory;
+        
         public DapperRepositoryBase(IConfiguration configuration)
         {
+            InitMaps();
+
             _configuration = configuration;
 
+            _connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+        }
+
+        public DapperRepositoryBase(IDbConnectionFactory dbConnectionFactory)
+        {
+            InitMaps();
+
+            _dbConnectionFactory = dbConnectionFactory;
+
+            _connection = _dbConnectionFactory.GetConnection();
+        }
+
+        private void InitMaps()
+        {
             if (FluentMapper.EntityMaps.IsEmpty)
             {
                 FluentMapper.Initialize(c =>
@@ -25,9 +45,7 @@ namespace Pair.Infrastructure.DapperORM
                     c.AddMap(new SoclialLinkDapperMap());
                     c.ForDommel();
                 });
-            }
-
-            _connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            };
         }
 
         public async Task<decimal> Insert(TEntity obj)
@@ -54,7 +72,7 @@ namespace Pair.Infrastructure.DapperORM
         ~DapperRepositoryBase() =>
             Dispose();
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             if (!_disposed)
             {

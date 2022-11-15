@@ -1,12 +1,18 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
 using Pair.Core.Models;
+using Pair.Core.ORM;
+using System.Data.SqlClient;
 
 namespace Pair.Infrastructure.DapperORM
 {
     public class SocialLinksRepository : DapperRepositoryBase<SocialLink>
     {
         public SocialLinksRepository(IConfiguration configuration) : base(configuration)
+        {
+        }
+
+        public SocialLinksRepository(IDbConnectionFactory dbConnectionFactory) : base(dbConnectionFactory)
         {
         }
 
