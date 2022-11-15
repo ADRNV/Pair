@@ -1,5 +1,4 @@
 ﻿using Pair.Core.ORM;
-using System.Data.SQLite;
 
 namespace Pair.Infrastructure.Tests.DapperORM
 {
@@ -25,19 +24,19 @@ namespace Pair.Infrastructure.Tests.DapperORM
         [Fact]
         public async void InsertPersonShould_ReturnsId()
         {
-           
+
         }
 
         [Fact]
         public async void GetPersonShould_ReturnsPerson()
         {
-            
+
         }
 
         [Fact]
         public async void GetPersonShould_ReturnsPersons()
         {
-           
+
         }
     }
 }

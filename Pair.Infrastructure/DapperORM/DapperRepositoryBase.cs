@@ -14,9 +14,9 @@ namespace Pair.Infrastructure.DapperORM
         private readonly IConfiguration _configuration;
 
         protected readonly IDbConnection _connection;
-        
+
         protected readonly IDbConnectionFactory _dbConnectionFactory;
-        
+
         public DapperRepositoryBase(IConfiguration configuration)
         {
             InitMaps();

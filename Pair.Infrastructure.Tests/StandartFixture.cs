@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
-using Pair.Core.ORM;
+﻿using Pair.Core.ORM;
 using Pair.Infrastructure.Tests.Stubs;
 
 namespace Pair.Infrastructure.Tests

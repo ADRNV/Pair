@@ -1,6 +1,6 @@
-﻿using ServiceStack.OrmLite.Sqlite;
+﻿using Dommel;
+using ServiceStack.OrmLite.Sqlite;
 using System.Data;
-using Dommel;
 
 namespace Pair.Infrastructure.Tests.Stubs
 {

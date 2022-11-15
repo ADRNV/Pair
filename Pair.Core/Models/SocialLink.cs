@@ -10,6 +10,6 @@
 
         public string Link { get; set; } = string.Empty;
 
-        public Person Person { get; set; } 
+        public Person Person { get; set; }
     }
 }

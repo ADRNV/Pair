@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Pair.Core.Models;
 using Pair.Core.ORM;
-using System.Data.SqlClient;
 
 namespace Pair.Infrastructure.DapperORM
 {
