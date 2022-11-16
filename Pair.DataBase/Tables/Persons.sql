@@ -5,4 +5,5 @@
 	[Bio] VARCHAR(MAX),
 	[Age] INT NOT NULL,
 	[Sex] VARCHAR(MAX),
+	[Photo] VARBINARY(MAX),
 )

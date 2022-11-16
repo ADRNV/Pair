@@ -13,5 +13,7 @@
         public IList<SocialLink>? SocialLinks { get; set; }
 
         public string Sex { get; set; } = string.Empty;
+
+        public byte[]? Photo { get; set; }
     }
 }

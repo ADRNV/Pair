@@ -8,6 +8,7 @@ namespace Pair.Infrastructure.Tests
         public IConfiguration Configuration { get; private set; }
 
         public IDbConnectionFactory DbConnectionFactory { get; private set; }
+
         public StandartFixture()
         {
             Configuration = new ConfigurationBuilder()
