@@ -1,5 +1,4 @@
-﻿using Pair.Core.ORM;
-using System.Data;
+﻿using Pair.Infrastructure.Tests.Stubs;
 
 namespace Pair.Infrastructure.Tests
 {

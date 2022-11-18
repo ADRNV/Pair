@@ -1,5 +1,4 @@
-﻿using Pair.Core.ORM;
-using ServiceStack.OrmLite.Dapper;
+﻿using ServiceStack.OrmLite.Dapper;
 
 namespace Pair.Infrastructure.Tests.DapperORM
 {

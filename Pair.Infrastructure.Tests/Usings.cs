@@ -2,5 +2,8 @@
 global using Microsoft.Extensions.Configuration;
 global using Moq;
 global using Pair.Core.Models;
+global using Pair.Core.ORM;
 global using Pair.Infrastructure.DapperORM;
+global using System.Data;
+global using System.Data.SQLite;
 global using Xunit;
