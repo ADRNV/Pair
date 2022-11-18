@@ -48,11 +48,11 @@ namespace Pair.Infrastructure.DapperORM
             };
         }
 
-        public async Task<decimal> Insert(TEntity obj)
+        public async Task<long> Insert(TEntity obj)
         {
             var id = await _connection.InsertAsync(obj);
 
-            return (decimal)id;
+            return (long)id;
         }
 
         public async virtual Task<IEnumerable<TEntity>> Get() =>

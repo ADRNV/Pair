@@ -2,7 +2,7 @@
 {
     public interface IOrmWrapper<T> where T : class
     {
-        Task<decimal> Insert(T entity);
+        Task<long> Insert(T entity);
 
         Task<bool> Update(T Entity);
 
