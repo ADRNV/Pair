@@ -1,5 +1,4 @@
 ﻿using Pair.Core.ORM;
-using Pair.Infrastructure.Tests.Stubs;
 using System.Data;
 
 namespace Pair.Infrastructure.Tests
@@ -7,7 +6,7 @@ namespace Pair.Infrastructure.Tests
     public class StandartFixture
     {
         public IConfiguration Configuration { get; private set; }
-        
+
         public IDbConnectionFactory DbConnectionFactory { get; private set; }
 
         public IDbConnection DbConnection { get; private set; }

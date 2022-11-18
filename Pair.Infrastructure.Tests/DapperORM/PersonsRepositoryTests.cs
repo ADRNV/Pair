@@ -13,7 +13,7 @@ namespace Pair.Infrastructure.Tests.DapperORM
         private readonly DapperRepositoryBase<Person> _personsRepository;
 
         private readonly Mock<IOrmWrapper<Person>> _personsRepositoryMock;
-        
+
         public PersonsRepositoryTests()
         {
             _configuration = _standartFixture.Configuration;
