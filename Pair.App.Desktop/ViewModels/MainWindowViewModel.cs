@@ -1,9 +1,7 @@
-﻿using MaterialDesignThemes.Wpf.Converters;
-using MvvmCross.Commands;
+﻿using MvvmCross.Commands;
 using Pair.App.Desktop.ViewModels.Common;
 using Pair.App.Desktop.Views.MainPage;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Pair.App.Desktop.ViewModels
 {

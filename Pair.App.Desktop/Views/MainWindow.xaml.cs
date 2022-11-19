@@ -1,8 +1,6 @@
 ﻿using Pair.App.Desktop.ViewModels;
 using Pair.App.Desktop.ViewModels.Common;
-using Pair.App.Desktop.Views.MainPage;
 using System.Windows;
-using System.Windows.Controls;
 namespace Pair.App.Desktop
 {
     /// <summary>
