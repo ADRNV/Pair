@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase, IMainViewModel
     {
         private Page _currentPage;
 

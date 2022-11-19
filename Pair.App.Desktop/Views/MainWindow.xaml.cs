@@ -1,5 +1,4 @@
-﻿using Pair.App.Desktop.ViewModels;
-using Pair.App.Desktop.ViewModels.Common;
+﻿using Pair.App.Desktop.ViewModels.Common;
 using System.Windows;
 namespace Pair.App.Desktop
 {
@@ -8,20 +7,18 @@ namespace Pair.App.Desktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ViewModelBase _viewModel;
+        private readonly IMainViewModel _viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            _viewModel = new MainWindowViewModel();
-
-            this.DataContext = _viewModel;
         }
 
-        public MainWindow(ViewModelBase viewModel) : this()
+        public MainWindow(IMainViewModel viewModel)
         {
-            _viewModel = new MainWindowViewModel();
+            _viewModel = viewModel;
+
+            InitializeComponent();
 
             DataContext = _viewModel;
         }
