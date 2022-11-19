@@ -12,9 +12,28 @@
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Frame x:Name="pagger">
+    <DockPanel>
+        
+        
+        <Menu DockPanel.Dock="Top" VerticalAlignment="Center" Background="{StaticResource MaterialDesignDarkBackground}">
+            <MenuItem Header="{StaticResource Actions}">
+
+                <MenuItem Header="{StaticResource Add}"/>
+                <MenuItem Header="{StaticResource Edit}"/>
+                <MenuItem Header="{StaticResource Delete}"/>
+
+            </MenuItem>
+
+            <MenuItem Header="{StaticResource Tables}"/>
+
+            <MenuItem Header="{StaticResource Search}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Width="200"/>
+                </StackPanel>
+            </MenuItem>
+        </Menu>
+        <Frame Grid.Row="1" x:Name="pagger">
             
         </Frame>
-    </Grid>
+    </DockPanel>
 </Window>

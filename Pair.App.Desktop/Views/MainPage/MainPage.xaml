@@ -27,24 +27,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Menu VerticalAlignment="Center" Background="{StaticResource MaterialDesignDarkBackground}" Grid.ColumnSpan="3">
-            <MenuItem Header="{StaticResource Actions}">
-                
-                <MenuItem Header="{StaticResource Add}"/>
-                <MenuItem Header="{StaticResource Edit}"/>
-                <MenuItem Header="{StaticResource Delete}"/>
-              
-            </MenuItem>
-
-            <MenuItem Header="{StaticResource Tables}"/>
-
-            <MenuItem Header="{StaticResource Search}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBox Width="200"/>
-                </StackPanel>
-            </MenuItem>
-        </Menu>
-
+        
         <DataGrid Grid.Row="2" Grid.ColumnSpan="3"/>
 
     </Grid>
