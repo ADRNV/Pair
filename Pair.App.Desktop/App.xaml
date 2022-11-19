@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Pair.App.Desktop"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:constants="clr-namespace:Pair.App.Desktop.ViewModels.Common"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -24,6 +25,8 @@
             <sys:String x:Key="Sex">Пол</sys:String>
             <sys:String x:Key="Apply">Применить</sys:String>
             <sys:String x:Key="Cancel">Отменить</sys:String>
+            <sys:String x:Key="PersonsTableName">Люди</sys:String>
+            <sys:String x:Key="SocialLinksTableName">Соц.Сети</sys:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pair.Core", "Pair.Core\Pair
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pair.Infrastructure.Tests", "Pair.Infrastructure.Tests\Pair.Infrastructure.Tests.csproj", "{7DE24410-4FEB-4F89-A642-F44BFEA7D320}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pair.App.Desktop", "Pair.App.Desktop\Pair.App.Desktop.csproj", "{35D079B3-9244-4D57-BFF6-CCDC13EF82D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pair.App.Desktop", "Pair.App.Desktop\Pair.App.Desktop.csproj", "{35D079B3-9244-4D57-BFF6-CCDC13EF82D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

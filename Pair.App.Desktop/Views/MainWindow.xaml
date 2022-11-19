@@ -11,6 +11,8 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
+        xmlns:viewmodels="clr-namespace:Pair.App.Desktop.ViewModels"
+        DataContext="{x:Type viewmodels:MainWindowViewModel}" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         Title="MainWindow" Height="450" Width="800">
     <DockPanel>
         
@@ -24,7 +26,10 @@
 
             </MenuItem>
 
-            <MenuItem Header="{StaticResource Tables}"/>
+            <MenuItem Header="{StaticResource Tables}">
+                <MenuItem x:Name="personsTable" Header="{StaticResource PersonsTableName}" Command="{Binding ToTablePageCommand}"/>
+                <MenuItem Header="{StaticResource SocialLinksTableName}" Command="{Binding ToTablePageCommand}"/>
+            </MenuItem>
 
             <MenuItem Header="{StaticResource Search}">
                 <StackPanel Orientation="Horizontal">
@@ -32,8 +37,6 @@
                 </StackPanel>
             </MenuItem>
         </Menu>
-        <Frame Grid.Row="1" x:Name="pagger">
-            
-        </Frame>
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}"/>
     </DockPanel>
 </Window>
