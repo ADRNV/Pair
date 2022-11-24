@@ -7,20 +7,13 @@ namespace Pair.App.Desktop
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly IMainViewModel _viewModel;
+        public IMainViewModel ViewModel { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        public MainWindow(IMainViewModel viewModel)
-        {
-            _viewModel = viewModel;
-
-            InitializeComponent();
-
-            DataContext = _viewModel;
+            DataContext = ViewModel;
         }
     }
 }

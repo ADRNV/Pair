@@ -20,15 +20,15 @@
         <Menu DockPanel.Dock="Top" VerticalAlignment="Center" Background="{StaticResource MaterialDesignDarkBackground}">
             <MenuItem Header="{StaticResource Actions}">
 
-                <MenuItem Header="{StaticResource Add}"/>
+                <MenuItem Header="{StaticResource Add}" Command="{Binding AddCommand}"/>
                 <MenuItem Header="{StaticResource Edit}"/>
                 <MenuItem Header="{StaticResource Delete}"/>
 
             </MenuItem>
 
             <MenuItem Header="{StaticResource Tables}">
-                <MenuItem x:Name="personsTable" Header="{StaticResource PersonsTableName}" Command="{Binding ToTablePageCommand}"/>
-                <MenuItem Header="{StaticResource SocialLinksTableName}" Command="{Binding ToTablePageCommand}"/>
+                <MenuItem x:Name="personsTable" Header="{StaticResource PersonsTableName}" Command="{Binding ToTablePageCommand}" CommandParameter="1"/>
+                <MenuItem Header="{StaticResource SocialLinksTableName}" Command="{Binding ToTablePageCommand}" CommandParameter="2"/>
             </MenuItem>
 
             <MenuItem Header="{StaticResource Search}">

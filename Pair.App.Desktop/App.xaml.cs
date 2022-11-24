@@ -1,6 +1,8 @@
 ﻿using Ninject;
 using Pair.App.Desktop.IoC;
 using Pair.App.Desktop.ViewModels.Common;
+using System;
+using System.ComponentModel;
 using System.Windows;
 
 namespace Pair.App.Desktop
@@ -10,20 +12,30 @@ namespace Pair.App.Desktop
     /// </summary>
     public partial class App : Application
     {
-        private readonly IKernel _kernel;
+        private IKernel _kernel;
 
         public App()
         {
-            _kernel = new StandardKernel(new ViewModelsModule());
+            
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var vm = _kernel.Get<IMainViewModel>();
-
-            MainWindow = new MainWindow(vm);
-
             base.OnStartup(e);
+            ConfigureContainer();
+            ComposeObjects();
+        }
+
+        private void ComposeObjects()
+        {
+            Current.MainWindow = _kernel.Get<MainWindow>();
+            Current.MainWindow.DataContext = _kernel.Get<IMainViewModel>();
+            Current.MainWindow.Show();
+        }
+
+        private void ConfigureContainer()
+        {
+            _kernel = new StandardKernel(new ViewModelsModule());
         }
     }
 }
