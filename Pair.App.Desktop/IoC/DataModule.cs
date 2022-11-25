@@ -1,8 +1,7 @@
-﻿using Microsoft.Extensions.Configuration; 
+﻿using Microsoft.Extensions.Configuration;
 using Ninject.Modules;
 using Pair.Core.Repositories;
 using Pair.Infrastructure.DapperORM;
-using System.IO;
 
 namespace Pair.App.Desktop.IoC
 {

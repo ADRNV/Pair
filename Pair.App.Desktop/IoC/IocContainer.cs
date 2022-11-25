@@ -1,5 +1,5 @@
-﻿using Ninject.Modules;
-using Ninject;
+﻿using Ninject;
+using Ninject.Modules;
 
 namespace Pair.App.Desktop.IoC
 {

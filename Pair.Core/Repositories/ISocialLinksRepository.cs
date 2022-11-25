@@ -4,6 +4,6 @@ namespace Pair.Core.Repositories
 {
     public interface ISocialLinksRepository : IRepository<SocialLink>
     {
-       
+
     }
 }

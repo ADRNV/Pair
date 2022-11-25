@@ -1,6 +1,4 @@
-﻿using Pair.Core.Models;
-
-namespace Pair.Core.Repositories
+﻿namespace Pair.Core.Repositories
 {
     public interface IRepository<T>
     {

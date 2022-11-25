@@ -1,10 +1,6 @@
 ﻿using MvvmCross.Commands;
 using Pair.App.Desktop.ViewModels.Common;
-using Pair.App.Desktop.Views.EditPage;
 using Pair.App.Desktop.Views.MainPage;
-using Pair.Core.Models;
-using System;
-using System.CodeDom;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -59,7 +55,6 @@ namespace Pair.App.Desktop.ViewModels
         private void Add()
         {
             CurrentPageViewModel.AddCommand.ExecuteAsync();
-            MessageBox.Show("Executed");
         }
     }
 }

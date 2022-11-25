@@ -1,5 +1,4 @@
-﻿using MvvmCross.Commands;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels.Common
 {

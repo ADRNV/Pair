@@ -1,8 +1,5 @@
-﻿using Ninject;
-using Pair.App.Desktop.IoC;
+﻿using Pair.App.Desktop.IoC;
 using Pair.App.Desktop.ViewModels.Common;
-using System;
-using System.ComponentModel;
 using System.Windows;
 
 namespace Pair.App.Desktop
@@ -12,9 +9,9 @@ namespace Pair.App.Desktop
     /// </summary>
     public partial class App : Application
     {
-       
+
         public App()
-        {     
+        {
         }
 
         protected override void OnStartup(StartupEventArgs e)
