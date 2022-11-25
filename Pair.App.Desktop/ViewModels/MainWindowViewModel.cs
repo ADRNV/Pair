@@ -48,6 +48,7 @@ namespace Pair.App.Desktop.ViewModels
             {
                 case 1:
                     this.CurrentPageViewModel = new PersonsViewModel(null);
+                    this.CurrentPage = new MainPage();
                     break;
                 case 2:
                     this.CurrentPageViewModel = new SocialLinksViewModel(null);

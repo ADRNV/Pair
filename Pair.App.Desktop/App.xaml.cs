@@ -12,30 +12,25 @@ namespace Pair.App.Desktop
     /// </summary>
     public partial class App : Application
     {
-        private IKernel _kernel;
-
+       
         public App()
-        {
-            
+        {     
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            IocKernel.Initialize(new ViewModelsModule(), new DataModule());
+
             base.OnStartup(e);
-            ConfigureContainer();
+
             ComposeObjects();
         }
 
         private void ComposeObjects()
         {
-            Current.MainWindow = _kernel.Get<MainWindow>();
-            Current.MainWindow.DataContext = _kernel.Get<IMainViewModel>();
+            Current.MainWindow = IocKernel.Get<MainWindow>();
+            Current.MainWindow.DataContext = IocKernel.Get<IMainViewModel>();
             Current.MainWindow.Show();
-        }
-
-        private void ConfigureContainer()
-        {
-            _kernel = new StandardKernel(new ViewModelsModule());
         }
     }
 }
