@@ -2,10 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Pair.Core.Models;
 using Pair.Core.ORM;
+using Pair.Core.Repositories;
 
 namespace Pair.Infrastructure.DapperORM
 {
-    public class SocialLinksRepository : DapperRepositoryBase<SocialLink>
+    public class SocialLinksRepository : DapperRepositoryBase<SocialLink>, ISocialLinksRepository
     {
         public SocialLinksRepository(IConfiguration configuration) : base(configuration)
         {

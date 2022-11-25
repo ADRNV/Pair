@@ -2,10 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Pair.Core.Models;
 using Pair.Core.ORM;
+using Pair.Core.Repositories;
 
 namespace Pair.Infrastructure.DapperORM
 {
-    public class PersonsRepository : DapperRepositoryBase<Person>
+    public class PersonsRepository : DapperRepositoryBase<Person>, IPersonsRepository
     {
         public PersonsRepository(IConfiguration configuration) : base(configuration)
         {

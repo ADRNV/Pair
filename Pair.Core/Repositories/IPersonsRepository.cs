@@ -2,16 +2,8 @@
 
 namespace Pair.Core.Repositories
 {
-    public interface IPersonsRepository
+    public interface IPersonsRepository : IRepository<Person>
     {
-        Task<int> Create(Person person);
-
-        Task<int> Update(Person person, int id);
-
-        Task<bool> Remove(int id);
-
-        Task<IEnumerable<Person>> Get();
-
-        Task<Person> Get(int id);
+       
     }
 }

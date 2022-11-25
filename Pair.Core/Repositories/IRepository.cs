@@ -1,12 +1,14 @@
-﻿namespace Pair.Core.Repositories
+﻿using Pair.Core.Models;
+
+namespace Pair.Core.Repositories
 {
     public interface IRepository<T>
     {
-        Task<int> Create(T entity);
+        Task<long> Insert(T person);
 
-        Task<int> Update(T entity, int id);
+        Task<bool> Update(T person);
 
-        Task<bool> Remove(int id);
+        Task<bool> Delete(T person);
 
         Task<IEnumerable<T>> Get();
 
