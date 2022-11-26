@@ -29,6 +29,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\MainPage\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties appsetting_1json__JsonSchema="https://appsemble.app/api.json" /></VisualStudio></ProjectExtensions>
 
 </Project>

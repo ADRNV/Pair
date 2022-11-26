@@ -16,7 +16,7 @@ namespace Pair.App.Desktop
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            IocKernel.Initialize(new ViewModelsModule(), new DataModule());
+            IocKernel.Initialize(new DataModule(), new ViewModelsModule());
 
             base.OnStartup(e);
 

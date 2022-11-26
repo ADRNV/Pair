@@ -4,9 +4,9 @@ namespace Pair.App.Desktop.IoC
 {
     class ViewModelLocator
     {
-        public ICrudViewModel ViewModel
+        public ViewModelBase ViewModel
         {
-            get { return IocKernel.Get<ICrudViewModel>(); }
+            get { return IocKernel.Get<ViewModelBase>(); }
         }
     }
 }

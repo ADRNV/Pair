@@ -12,11 +12,21 @@ namespace Pair.App.Desktop.IoC
             this.Bind<IMainViewModel>()
                 .To<MainWindowViewModel>();
 
-            this.Bind<CrudViewModelBase<Person>>()
-                .To<PersonsViewModel>();
+            //this.Bind<ICrudViewModel<SocialLink>>()
+            //    .To<ICrudViewModel<SocialLink>>()
+            //    .InTransientScope();
 
-            this.Bind<CrudViewModelBase<SocialLink>>()
-                .To<SocialLinksViewModel>();
+            this.Bind<IEditViewModel<Person>>()
+                .To<PersonEditPageViewModel>()
+                .InTransientScope();
+
+            this.Bind<ITableViewModel<Person>>()
+                .To<PersonsViewModel>()
+                .InTransientScope();
+
+            this.Bind<ITableViewModel<SocialLink>>()
+                .To<SocialLinksViewModel>()
+                .InSingletonScope();
         }
     }
 }

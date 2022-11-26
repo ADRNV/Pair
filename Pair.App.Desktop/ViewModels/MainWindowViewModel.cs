@@ -1,7 +1,9 @@
 ﻿using MvvmCross.Commands;
 using Pair.App.Desktop.ViewModels.Common;
-using Pair.App.Desktop.Views.MainPage;
-using System.Windows;
+using Pair.App.Desktop.Views.EditPage;
+using Pair.App.Desktop.Views.Persons.MainPage;
+using Pair.App.Desktop.Views.SocialLinks;
+using Pair.Core.Models;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
@@ -10,7 +12,21 @@ namespace Pair.App.Desktop.ViewModels
     {
         private Page? _currentPage;
 
-        private ICrudViewModel? _currentPageViewModel;
+        private IEditViewModel<Person> _currentPageViewModel;
+
+        private readonly ITableViewModel<Person> _personsViewModel;
+
+        private readonly ITableViewModel<SocialLink> _socialLinksViewModel;
+
+        public MainWindowViewModel(IEditViewModel<Person> editViewModel,
+            ITableViewModel<Person> personsViewModel, ITableViewModel<SocialLink> socialLinksViewModel)
+        {
+            _currentPageViewModel = editViewModel;
+
+            _personsViewModel = personsViewModel;
+
+            _socialLinksViewModel = socialLinksViewModel;
+        }
 
         public Page CurrentPage
         {
@@ -23,13 +39,14 @@ namespace Pair.App.Desktop.ViewModels
             }
         }
 
-        public ICrudViewModel CurrentPageViewModel
+        public IViewModel CurrentPageViewModel
         {
             get => _currentPageViewModel!;
 
             set
             {
-                _currentPageViewModel = value;
+                _currentPageViewModel = value as IEditViewModel<Person>;
+
                 RaisePropertyChanged(nameof(CurrentPageViewModel));
             }
         }
@@ -38,23 +55,29 @@ namespace Pair.App.Desktop.ViewModels
 
         public IMvxCommand AddCommand => new MvxCommand(Add);
 
+        public IMvxCommand DeleteCommand => new MvxCommand(Delete);
+
         private void ToTablePage(int obj)
         {
             switch (obj)
             {
                 case 1:
-                    this.CurrentPageViewModel = new PersonsViewModel(null);
-                    this.CurrentPage = new MainPage();
+                    this.CurrentPage = new PersonsPage(_personsViewModel);
                     break;
                 case 2:
-                    this.CurrentPageViewModel = new SocialLinksViewModel(null);
+                    this.CurrentPage = new SocialLinksPage(_socialLinksViewModel);
                     break;
             }
         }
 
         private void Add()
         {
-            CurrentPageViewModel.AddCommand.ExecuteAsync();
+            this.CurrentPage = new EditPage(this.CurrentPageViewModel as IEditViewModel<Person>);
+        }
+
+        private async void Delete()
+        {
+            await this._personsViewModel.DeleteCommand.ExecuteAsync();
         }
     }
 }

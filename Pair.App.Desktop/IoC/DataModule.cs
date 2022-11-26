@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Ninject.Modules;
+using Pair.Core.Models;
 using Pair.Core.Repositories;
 using Pair.Infrastructure.DapperORM;
 
@@ -13,12 +14,12 @@ namespace Pair.App.Desktop.IoC
                 .AddJsonFile(@"AppSetting.json", false)
                 .Build();
 
-            this.Bind<IPersonsRepository>()
+            this.Bind<IRepository<Person>>()
                 .To<PersonsRepository>()
                 .InSingletonScope()
                 .WithConstructorArgument("configuration", configuration);
 
-            this.Bind<ISocialLinksRepository>()
+            this.Bind<IRepository<SocialLink>>()
                 .To<SocialLinksRepository>()
                 .InSingletonScope()
                 .WithConstructorArgument("configuration", configuration);
