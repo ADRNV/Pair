@@ -28,6 +28,7 @@
             <sys:String x:Key="Cancel">Отменить</sys:String>
             <sys:String x:Key="PersonsTableName">Люди</sys:String>
             <sys:String x:Key="SocialLinksTableName">Соц.Сети</sys:String>
+            <sys:String x:Key="Link">Ссылка</sys:String>
             <vms:ViewModelLocator x:Key="ViewModelLocator"/>
         </ResourceDictionary>
     </Application.Resources>

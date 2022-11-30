@@ -20,6 +20,10 @@ namespace Pair.App.Desktop.IoC
                 .To<PersonEditPageViewModel>()
                 .InTransientScope();
 
+            this.Bind<IEditViewModel<SocialLink>>()
+                .To<SocialLinkEditViewModel>()
+                .InTransientScope();
+
             this.Bind<ITableViewModel<Person>>()
                 .To<PersonsViewModel>()
                 .InTransientScope();

@@ -3,6 +3,7 @@ using Pair.App.Desktop.ViewModels.Common;
 using Pair.App.Desktop.Views.EditPage;
 using Pair.App.Desktop.Views.Persons.MainPage;
 using Pair.App.Desktop.Views.SocialLinks;
+using Pair.App.Desktop.Views.SocialLinks.EditPage;
 using Pair.Core.Models;
 using System.Windows.Controls;
 
@@ -12,16 +13,22 @@ namespace Pair.App.Desktop.ViewModels
     {
         private Page? _currentPage;
 
-        private IEditViewModel<Person> _currentPageViewModel;
+        private ICommonEditViewModel _currentPageViewModel;
+
+        private ICommonEditViewModel _personEditViewModel;
+
+        private ICommonEditViewModel _socialLinkEditViewModel;
 
         private readonly ITableViewModel<Person> _personsViewModel;
 
         private readonly ITableViewModel<SocialLink> _socialLinksViewModel;
 
-        public MainWindowViewModel(IEditViewModel<Person> editViewModel,
+        public MainWindowViewModel(IEditViewModel<Person> personEditViewModel, IEditViewModel<SocialLink> socialLinkEditViewModel,
             ITableViewModel<Person> personsViewModel, ITableViewModel<SocialLink> socialLinksViewModel)
         {
-            _currentPageViewModel = editViewModel;
+            _personEditViewModel = personEditViewModel;
+
+            _socialLinkEditViewModel = socialLinkEditViewModel;
 
             _personsViewModel = personsViewModel;
 
@@ -39,13 +46,13 @@ namespace Pair.App.Desktop.ViewModels
             }
         }
 
-        public IViewModel CurrentPageViewModel
+        public ICommonEditViewModel CurrentPageViewModel
         {
             get => _currentPageViewModel!;
 
             set
             {
-                _currentPageViewModel = value as IEditViewModel<Person>;
+                _currentPageViewModel = value;
 
                 RaisePropertyChanged(nameof(CurrentPageViewModel));
             }
@@ -63,21 +70,31 @@ namespace Pair.App.Desktop.ViewModels
             {
                 case 1:
                     this.CurrentPage = new PersonsPage(_personsViewModel);
+                    this.CurrentPageViewModel = _personEditViewModel;
                     break;
                 case 2:
                     this.CurrentPage = new SocialLinksPage(_socialLinksViewModel);
+                    this.CurrentPageViewModel = _socialLinkEditViewModel;
                     break;
             }
         }
 
         private void Add()
         {
-            this.CurrentPage = new EditPage(this.CurrentPageViewModel as IEditViewModel<Person>);
+            if (this.CurrentPageViewModel is IEditViewModel<Person>)
+            {
+                this.CurrentPage = new EditPage(this.CurrentPageViewModel as IEditViewModel<Person>);
+            }
+            else
+            {
+                this.CurrentPage = new SocialLinksEditPage(this.CurrentPageViewModel as IEditViewModel<SocialLink>);
+            }
         }
 
         private async void Delete()
         {
             await this._personsViewModel.DeleteCommand.ExecuteAsync();
         }
+
     }
 }

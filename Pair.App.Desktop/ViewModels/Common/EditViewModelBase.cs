@@ -1,6 +1,7 @@
 ﻿using MvvmCross.Commands;
 using Pair.Core.Repositories;
 using System;
+using System.Threading.Tasks;
 
 namespace Pair.App.Desktop.ViewModels.Common
 {
@@ -26,13 +27,13 @@ namespace Pair.App.Desktop.ViewModels.Common
             }
         }
 
-        public IMvxCommand AddCommand => new MvxCommand(Add);
+        public IMvxAsyncCommand AddCommand => new MvxAsyncCommand(Add);
 
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
 
-        protected virtual void Add()
+        protected async virtual Task Add()
         {
-            _repository.Insert(Item);
+            await _repository.Insert(Item);
         }
 
         protected virtual void Cancel()
