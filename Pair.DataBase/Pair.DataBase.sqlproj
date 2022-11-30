@@ -71,5 +71,6 @@
     <Build Include="StoredFunctions\sf_SelectAllPersons.sql" />
     <Build Include="StoredProcedures\SocialLinks\sp_InsertSocialLink.sql" />
     <Build Include="StoredProcedures\SocialLinks\sp_UpdateSocialLink.sql" />
+    <Build Include="Tables\Photos.sql" />
   </ItemGroup>
 </Project>
