@@ -41,13 +41,15 @@ namespace Pair.App.Desktop.ViewModels.Common
             _repository = repository;
         }
 
-        public virtual IMvxAsyncCommand DeleteCommand { get; }
+        public virtual IMvxAsyncCommand DeleteCommand => new MvxAsyncCommand(Delete, CanDelete);
 
-        protected virtual void Delete()
+        protected async virtual Task Delete()
         {
-            _repository.Delete(SelectedItem);
+            await _repository.Delete(SelectedItem);
         }
 
+        protected virtual bool CanDelete() => _selectedItem is not null;
+        
         public virtual async Task<IEnumerable<T>> Load()
         {
             var items = await _repository.Get();
