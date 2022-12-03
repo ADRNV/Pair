@@ -9,7 +9,7 @@
       Title="AuthPage">
 
     <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-       
+
 
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label Content="{StaticResource Login}"/>
@@ -23,5 +23,6 @@
             <Label/>
             <Button Content="{StaticResource Register}"/>
         </StackPanel>
+   
     </WrapPanel>
 </Page>
