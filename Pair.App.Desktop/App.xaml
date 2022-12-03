@@ -29,6 +29,10 @@
             <sys:String x:Key="PersonsTableName">Люди</sys:String>
             <sys:String x:Key="SocialLinksTableName">Соц.Сети</sys:String>
             <sys:String x:Key="Link">Ссылка</sys:String>
+            <sys:String x:Key="Login">Логин</sys:String>
+            <sys:String x:Key="Password">Пароль</sys:String>
+            <sys:String x:Key="Signin">Войти</sys:String>
+            <sys:String x:Key="Register">Зарешестрировать</sys:String>
             <vms:ViewModelLocator x:Key="ViewModelLocator"/>
         </ResourceDictionary>
     </Application.Resources>
