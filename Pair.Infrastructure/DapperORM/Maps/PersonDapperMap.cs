@@ -13,6 +13,9 @@ namespace Pair.Infrastructure.DapperORM.Maps
                 .IsIdentity();
             Map(p => p.SocialLinks)
                 .Ignore();
+
+            Map(p => p.Photo)
+                .Ignore();
         }
     }
 }

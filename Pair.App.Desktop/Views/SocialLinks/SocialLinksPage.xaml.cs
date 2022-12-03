@@ -15,6 +15,8 @@ namespace Pair.App.Desktop.Views.SocialLinks
         {
             _socialLinksViewModel = socialLinksViewModel;
 
+            _socialLinksViewModel.Load();
+
             InitializeComponent();
 
             this.DataContext = _socialLinksViewModel;

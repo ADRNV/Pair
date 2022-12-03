@@ -1,7 +1,9 @@
 ﻿using Pair.App.Desktop.ViewModels.Common;
 using Pair.Core.Models;
 using Pair.Core.Repositories;
+using System;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Pair.App.Desktop.ViewModels
 {
@@ -31,11 +33,6 @@ namespace Pair.App.Desktop.ViewModels
                 _item.Link = value;
                 RaisePropertyChanged(nameof(Link));
             }
-        }
-
-        protected async override Task Add()
-        {
-            await _repository.Insert(Item);
         }
     }
 }

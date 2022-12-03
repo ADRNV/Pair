@@ -20,14 +20,12 @@ namespace Pair.Infrastructure.DapperORM
         {
             var sql = "SELECT * FROM SocialLinks S JOIN Persons P ON P.Id = S.PersonId";
 
-            _connection.QueryAsync<SocialLink, Person, SocialLink>(sql, (s, p) =>
+            return _connection.QueryAsync<SocialLink, Person, SocialLink>(sql, (s, p) =>
             {
                 s.Person = p;
 
                 return s;
             });
-
-            return base.Get();
         }
     }
 }
