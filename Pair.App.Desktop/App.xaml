@@ -33,6 +33,7 @@
             <sys:String x:Key="Password">Пароль</sys:String>
             <sys:String x:Key="Signin">Войти</sys:String>
             <sys:String x:Key="Register">Зарешестрировать</sys:String>
+            <sys:String x:Key="AssignWith">Связан с:</sys:String>
             <vms:ViewModelLocator x:Key="ViewModelLocator"/>
         </ResourceDictionary>
     </Application.Resources>

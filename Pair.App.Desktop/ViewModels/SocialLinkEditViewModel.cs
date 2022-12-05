@@ -34,5 +34,16 @@ namespace Pair.App.Desktop.ViewModels
                 RaisePropertyChanged(nameof(Link));
             }
         }
+
+        public int PersonId
+        {
+            get => _item.PersonId;
+
+            set
+            {
+                _item.PersonId = value;
+                RaisePropertyChanged(nameof(PersonId));
+            }
+        }
     }
 }
