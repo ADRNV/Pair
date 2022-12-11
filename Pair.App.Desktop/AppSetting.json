@@ -1,5 +1,6 @@
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Database=Pair;Integrated Security=true;"
+    "DefaultConnection": "Server=localhost;Database=Pair;Integrated Security=true;",
+    "AuthDbConnection": "Server=localhost;Database=Users;Integrated Security=true;"
   }
 }

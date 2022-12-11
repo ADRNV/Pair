@@ -1,8 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Configuration;
 using Ninject.Modules;
 using Pair.Core.Models;
 using Pair.Core.Repositories;
 using Pair.Infrastructure.DapperORM;
+using Pair.Infrastructure.EF;
+using Pair.Infrastructure.EF.Security;
 
 namespace Pair.App.Desktop.IoC
 {
@@ -23,6 +27,14 @@ namespace Pair.App.Desktop.IoC
                 .To<SocialLinksRepository>()
                 .InSingletonScope()
                 .WithConstructorArgument("configuration", configuration);
+
+            //Replace with AddEntityFrameWorkStorage() extension
+            this.Bind<AuthContext>()
+                .ToSelf()
+                .WithConstructorArgument("options", configuration.GetConnectionString("AuthDbConnection"));
+
+            this.Bind<IAuthRepository<User>>()
+                .To<UsersRepository>();
         }
     }
 }
