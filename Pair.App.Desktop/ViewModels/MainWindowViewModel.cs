@@ -92,8 +92,16 @@ namespace Pair.App.Desktop.ViewModels
         }
 
         private async void Delete()
-        {
-            await this._personsViewModel.DeleteCommand.ExecuteAsync();
+        {   
+            if(CurrentPageViewModel is IEditViewModel<Person>)
+            {
+                await this._personsViewModel.DeleteCommand.ExecuteAsync();
+            }
+            else
+            {
+                await this._socialLinksViewModel.DeleteCommand.ExecuteAsync();
+            }
+            
         }
 
     }
