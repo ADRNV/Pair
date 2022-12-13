@@ -1,15 +1,10 @@
 ﻿using MvvmCross.Commands;
 using Pair.App.Desktop.ViewModels.Common;
-using Pair.Infrastructure.EF;
 using Pair.Core.Models;
+using Pair.Core.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using Pair.Core.Repositories;
 
 namespace Pair.App.Desktop.ViewModels
 {
@@ -78,7 +73,7 @@ namespace Pair.App.Desktop.ViewModels
                 WasSigned.Invoke(user.Permissions);
                 MessageBox.Show("OK");
             }
-            
+
         }
     }
 }

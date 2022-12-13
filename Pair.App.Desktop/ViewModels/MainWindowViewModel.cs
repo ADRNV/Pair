@@ -6,7 +6,6 @@ using Pair.App.Desktop.Views.Persons.MainPage;
 using Pair.App.Desktop.Views.SocialLinks;
 using Pair.App.Desktop.Views.SocialLinks.EditPage;
 using Pair.Core.Models;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
@@ -115,8 +114,8 @@ namespace Pair.App.Desktop.ViewModels
         }
 
         private async void Delete()
-        {   
-            if(CurrentPageViewModel is IEditViewModel<Person>)
+        {
+            if (CurrentPageViewModel is IEditViewModel<Person>)
             {
                 await this._personsViewModel.DeleteCommand.ExecuteAsync();
             }
@@ -124,7 +123,7 @@ namespace Pair.App.Desktop.ViewModels
             {
                 await this._socialLinksViewModel.DeleteCommand.ExecuteAsync();
             }
-            
+
         }
     }
 }

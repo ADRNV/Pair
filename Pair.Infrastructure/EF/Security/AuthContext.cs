@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pair.Infrastructure.EF.Security.Entities;
 using Pair.Infrastructure.EF.Security.Entities.Configurations;
-using System.Data.Common;
 
 namespace Pair.Infrastructure.EF.Security
 {
@@ -26,10 +25,11 @@ namespace Pair.Infrastructure.EF.Security
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.Entity<User>()
-                .HasData(new User 
-                {   Id = 1, 
-                    Login = "root", 
-                    Password = "toor", 
+                .HasData(new User
+                {
+                    Id = 1,
+                    Login = "root",
+                    Password = "toor",
                     Permissions = true
                 },
                 new User

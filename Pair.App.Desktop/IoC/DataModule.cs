@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Ninject.Modules;
 using Pair.Core.Models;
@@ -31,7 +30,7 @@ namespace Pair.App.Desktop.IoC
             //Replace with AddEntityFrameWorkStorage() extension
 
             var connectionString = configuration.GetConnectionString("AuthDbConnection");
-            
+
             this.Bind<AuthContext>()
                 .ToSelf()
                 .WithConstructorArgument("connectionString", connectionString);

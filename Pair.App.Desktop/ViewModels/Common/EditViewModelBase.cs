@@ -2,7 +2,6 @@
 using Pair.Core.Repositories;
 using System;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Pair.App.Desktop.ViewModels.Common
 {
@@ -34,7 +33,7 @@ namespace Pair.App.Desktop.ViewModels.Common
 
         protected async virtual Task Add()
         {
-           await _repository.Insert(Item);
+            await _repository.Insert(Item);
         }
 
         protected virtual void Cancel()

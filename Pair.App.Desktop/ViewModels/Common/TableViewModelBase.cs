@@ -49,7 +49,7 @@ namespace Pair.App.Desktop.ViewModels.Common
         }
 
         protected virtual bool CanDelete() => _selectedItem is not null;
-        
+
         public virtual async Task<IEnumerable<T>> Load()
         {
             var items = await _repository.Get();

@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
 using Pair.Core.Repositories;
 using Pair.Infrastructure.EF.Security;
 using Pair.Infrastructure.EF.Security.Entities;
-using Mapster;
 
 namespace Pair.Infrastructure.EF
 {
@@ -29,14 +29,14 @@ namespace Pair.Infrastructure.EF
         public async Task<IEnumerable<Core.Models.User>> Get()
         {
             var users = await _db.Users.ToListAsync();
-            
+
             return users.Adapt<List<Core.Models.User>>();
         }
 
         public async Task<Core.Models.User> Get(int id)
         {
             var user = await _db.Users.FindAsync(new object[] { id });
-            
+
             return user.Adapt<Core.Models.User>();
         }
 
@@ -64,8 +64,8 @@ namespace Pair.Infrastructure.EF
 
         public async Task<Core.Models.User?> GetByLogin(string login)
         {
-           var user = await _db.Users.Where(u => u.Login == login)
-                .FirstOrDefaultAsync();
+            var user = await _db.Users.Where(u => u.Login == login)
+                 .FirstOrDefaultAsync();
 
             return user.Adapt<Core.Models.User?>();
         }
