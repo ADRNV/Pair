@@ -19,6 +19,10 @@ namespace Pair.App.Desktop.ViewModels
 
         private readonly IAuthRepository<User> _authRepository;
 
+        public bool _signed = false;
+
+        public event Action<bool> WasSigned;
+
         public AuthViewModel(IAuthRepository<User> authRepository)
         {
             _authRepository = authRepository;
@@ -48,6 +52,17 @@ namespace Pair.App.Desktop.ViewModels
             }
         }
 
+        public bool Signed
+        {
+            get => _signed;
+
+            set
+            {
+                _signed = value;
+                RaisePropertyChanged(nameof(Signed));
+            }
+        }
+
         private async Task SignIn()
         {
             var user = await _authRepository.GetByLogin(Login);
@@ -59,6 +74,8 @@ namespace Pair.App.Desktop.ViewModels
             }
             if (user.Password == Password)
             {
+                Signed = user.Permissions;
+                WasSigned.Invoke(user.Permissions);
                 MessageBox.Show("OK");
             }
             

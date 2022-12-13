@@ -18,12 +18,29 @@ namespace Pair.Infrastructure.EF.Security
 
         public AuthContext(string connectionString)
         {
+            _connectionString = connectionString;
             this.Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new UserConfiguration());   
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.Entity<User>()
+                .HasData(new User 
+                {   Id = 1, 
+                    Login = "root", 
+                    Password = "toor", 
+                    Permissions = true
+                },
+                new User
+                {
+                    Id = 2,
+                    Login = "User",
+                    Password = "qwerty",
+                    Permissions = false
+                }
+
+                );
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

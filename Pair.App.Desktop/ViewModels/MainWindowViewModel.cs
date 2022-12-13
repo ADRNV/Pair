@@ -1,10 +1,12 @@
 ﻿using MvvmCross.Commands;
 using Pair.App.Desktop.ViewModels.Common;
+using Pair.App.Desktop.Views.Auth;
 using Pair.App.Desktop.Views.EditPage;
 using Pair.App.Desktop.Views.Persons.MainPage;
 using Pair.App.Desktop.Views.SocialLinks;
 using Pair.App.Desktop.Views.SocialLinks.EditPage;
 using Pair.Core.Models;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
@@ -12,6 +14,8 @@ namespace Pair.App.Desktop.ViewModels
     public class MainWindowViewModel : ViewModelBase, IMainViewModel
     {
         private Page? _currentPage;
+
+        private bool _signed = false;
 
         private ICommonEditViewModel _currentPageViewModel;
 
@@ -23,8 +27,10 @@ namespace Pair.App.Desktop.ViewModels
 
         private readonly ITableViewModel<SocialLink> _socialLinksViewModel;
 
+        private AuthViewModel _authViewModel;
+
         public MainWindowViewModel(IEditViewModel<Person> personEditViewModel, IEditViewModel<SocialLink> socialLinkEditViewModel,
-            ITableViewModel<Person> personsViewModel, ITableViewModel<SocialLink> socialLinksViewModel)
+            ITableViewModel<Person> personsViewModel, ITableViewModel<SocialLink> socialLinksViewModel, AuthViewModel authViewModel)
         {
             _personEditViewModel = personEditViewModel;
 
@@ -33,6 +39,23 @@ namespace Pair.App.Desktop.ViewModels
             _personsViewModel = personsViewModel;
 
             _socialLinksViewModel = socialLinksViewModel;
+
+            _authViewModel = authViewModel;
+
+            _authViewModel.WasSigned += (s) => Signed = s;
+
+            CurrentPage = new AuthPage(_authViewModel);
+        }
+
+        public bool Signed
+        {
+            get => _signed;
+
+            set
+            {
+                _signed = value;
+                RaisePropertyChanged(nameof(Signed));
+            }
         }
 
         public Page CurrentPage
@@ -103,6 +126,5 @@ namespace Pair.App.Desktop.ViewModels
             }
             
         }
-
     }
 }

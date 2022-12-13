@@ -18,7 +18,7 @@
         
         
         <Menu DockPanel.Dock="Top" VerticalAlignment="Center" Background="{StaticResource MaterialDesignDarkBackground}">
-            <MenuItem Header="{StaticResource Actions}">
+            <MenuItem Header="{StaticResource Actions}" IsEnabled="{Binding Signed, NotifyOnSourceUpdated=True}">
 
                 <MenuItem Header="{StaticResource Add}" Command="{Binding AddCommand}"/>
                 <MenuItem Header="{StaticResource Edit}"/>

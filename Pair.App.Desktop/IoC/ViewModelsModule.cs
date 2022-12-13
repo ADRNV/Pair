@@ -36,9 +36,9 @@ namespace Pair.App.Desktop.IoC
                 .To<SocialLinksViewModel>()
                 .InSingletonScope();
 
-            this.Bind<IAuthRepository<Core.Models.User>>()
-                .To<UsersRepository>()
-                .InSingletonScope();
+            this.Bind<AuthViewModel>()
+                .ToSelf()
+                .InTransientScope();
         }
     }
 }

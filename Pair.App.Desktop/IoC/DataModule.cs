@@ -29,9 +29,12 @@ namespace Pair.App.Desktop.IoC
                 .WithConstructorArgument("configuration", configuration);
 
             //Replace with AddEntityFrameWorkStorage() extension
+
+            var connectionString = configuration.GetConnectionString("AuthDbConnection");
+            
             this.Bind<AuthContext>()
                 .ToSelf()
-                .WithConstructorArgument("options", configuration.GetConnectionString("AuthDbConnection"));
+                .WithConstructorArgument("connectionString", connectionString);
 
             this.Bind<IAuthRepository<User>>()
                 .To<UsersRepository>();
