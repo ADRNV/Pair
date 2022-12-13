@@ -38,9 +38,7 @@ namespace Pair.Infrastructure.EF.Security
                     Login = "User",
                     Password = "qwerty",
                     Permissions = false
-                }
-
-                );
+                });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
