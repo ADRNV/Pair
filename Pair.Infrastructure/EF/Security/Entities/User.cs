@@ -1,4 +1,6 @@
-﻿namespace Pair.Infrastructure.EF.Security.Entities
+﻿using Pair.Infrastructure.EF.Security.Entities.Configurations;
+
+namespace Pair.Infrastructure.EF.Security.Entities
 {
     public class User
     {
@@ -8,6 +10,6 @@
 
         public string Password { get; set; }
 
-        public bool Permissions { get; set; }
+        public Permissions Permissions { get; set; }
     }
 }

@@ -30,14 +30,14 @@ namespace Pair.Infrastructure.EF.Security
                     Id = 1,
                     Login = "root",
                     Password = "toor",
-                    Permissions = true
+                    Permissions = Permissions.ReadAndWrite | Permissions.Manage
                 },
                 new User
                 {
                     Id = 2,
                     Login = "User",
                     Password = "qwerty",
-                    Permissions = false
+                    Permissions = Permissions.Read
                 });
         }
 

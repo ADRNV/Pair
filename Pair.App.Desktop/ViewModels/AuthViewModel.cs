@@ -2,6 +2,7 @@
 using Pair.App.Desktop.ViewModels.Common;
 using Pair.Core.Models;
 using Pair.Core.Repositories;
+using Pair.Infrastructure.EF.Security.Entities.Configurations;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,7 +17,7 @@ namespace Pair.App.Desktop.ViewModels
 
         public bool _signed = false;
 
-        public event Action<bool> WasSigned;
+        public event Action<Permissions> WasSigned;
 
         public AuthViewModel(IAuthRepository<User> authRepository)
         {
@@ -69,9 +70,8 @@ namespace Pair.App.Desktop.ViewModels
             }
             if (user.Password == Password)
             {
-                Signed = user.Permissions;
+                Signed = true;
                 WasSigned.Invoke(user.Permissions);
-                MessageBox.Show("OK");
             }
 
         }

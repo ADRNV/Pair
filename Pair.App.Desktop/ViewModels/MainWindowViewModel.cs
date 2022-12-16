@@ -6,15 +6,21 @@ using Pair.App.Desktop.Views.Persons.MainPage;
 using Pair.App.Desktop.Views.SocialLinks;
 using Pair.App.Desktop.Views.SocialLinks.EditPage;
 using Pair.Core.Models;
+using Pair.Infrastructure.EF.Security.Entities.Configurations;
+using System;
+using System.Security.Policy;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
 {
+    ///TODO Decomposite this
     public class MainWindowViewModel : ViewModelBase, IMainViewModel
     {
         private Page? _currentPage;
 
-        private bool _signed = false;
+        private bool _canChange = false;
+
+        private bool _canRead = false;
 
         private ICommonEditViewModel _currentPageViewModel;
 
@@ -41,19 +47,44 @@ namespace Pair.App.Desktop.ViewModels
 
             _authViewModel = authViewModel;
 
-            _authViewModel.WasSigned += (s) => Signed = s;
+            _authViewModel.WasSigned += ManageUi;
 
             CurrentPage = new AuthPage(_authViewModel);
         }
 
-        public bool Signed
+        private void ManageUi(Permissions permission)
         {
-            get => _signed;
+            switch (permission)
+            {
+                case Permissions.ReadAndWrite | Permissions.Manage:
+                    CanChange = true;
+                    CanRead = true;
+                    break;
+                case Permissions.Read:
+                    CanRead = true;
+                    break;
+            }
+        }
+
+        public bool CanChange
+        {
+            get => _canChange;
 
             set
             {
-                _signed = value;
-                RaisePropertyChanged(nameof(Signed));
+                _canChange = value;
+                RaisePropertyChanged(nameof(CanChange));
+            }
+        }
+
+        public bool CanRead
+        {
+            get => _canRead;
+
+            set
+            {
+                _canRead = value;
+                RaisePropertyChanged(nameof(CanRead));
             }
         }
 
@@ -85,6 +116,10 @@ namespace Pair.App.Desktop.ViewModels
         public IMvxCommand AddCommand => new MvxCommand(Add);
 
         public IMvxCommand DeleteCommand => new MvxCommand(Delete);
+
+        public IMvxCommand ExitFromUserCommand => new MvxCommand(ExitFromUser);
+
+        public IMvxCommand ExitFromAppCommand => new MvxCommand(ExitFromApp);
 
         private void ToTablePage(int obj)
         {
@@ -125,5 +160,17 @@ namespace Pair.App.Desktop.ViewModels
             }
 
         }
+
+        private void ExitFromUser()
+        {
+            CanChange = false;
+            CanRead = false;
+
+            _authViewModel.Signed = false;
+
+            CurrentPage = new AuthPage(_authViewModel);
+        }
+
+        private void ExitFromApp() => Environment.Exit(0);
     }
 }
