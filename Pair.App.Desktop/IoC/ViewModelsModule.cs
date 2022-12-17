@@ -1,4 +1,5 @@
-﻿using Ninject.Modules;
+﻿using MvvmCross.Binding.BindingContext;
+using Ninject.Modules;
 using Pair.App.Desktop.ViewModels;
 using Pair.App.Desktop.ViewModels.Common;
 using Pair.Core.Models;
@@ -34,6 +35,14 @@ namespace Pair.App.Desktop.IoC
 
             this.Bind<AuthViewModel>()
                 .ToSelf()
+                .InTransientScope();
+
+            this.Bind<ITableViewModel<User>>()
+                .To<UsersViewModel>()
+                .InTransientScope();
+
+            this.Bind<IEditViewModel<User>>()
+                .To<UserEditViewModel>()
                 .InTransientScope();
         }
     }

@@ -8,12 +8,14 @@ using Pair.App.Desktop.Views.SocialLinks.EditPage;
 using Pair.Core.Models;
 using Pair.Infrastructure.EF.Security.Entities.Configurations;
 using System;
+using System.Collections.Generic;
 using System.Security.Policy;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
 {
-    ///TODO Decomposite this
+    ///TODO 1 Decomposite this <summary>
+    ///TODO 2 Move Permissions properties to class
     public class MainWindowViewModel : ViewModelBase, IMainViewModel
     {
         private Page? _currentPage;
@@ -32,10 +34,15 @@ namespace Pair.App.Desktop.ViewModels
 
         private readonly ITableViewModel<SocialLink> _socialLinksViewModel;
 
+        private readonly ITableViewModel<User> _usersViewModel;
+
+        private readonly IEditViewModel<User> _userEditViewModel;
+
         private AuthViewModel _authViewModel;
 
         public MainWindowViewModel(IEditViewModel<Person> personEditViewModel, IEditViewModel<SocialLink> socialLinkEditViewModel,
-            ITableViewModel<Person> personsViewModel, ITableViewModel<SocialLink> socialLinksViewModel, AuthViewModel authViewModel)
+            ITableViewModel<Person> personsViewModel, ITableViewModel<SocialLink> socialLinksViewModel, AuthViewModel authViewModel,
+            IEditViewModel<User> userEditViewModel, ITableViewModel<User> usersViewModel)
         {
             _personEditViewModel = personEditViewModel;
 
@@ -46,6 +53,10 @@ namespace Pair.App.Desktop.ViewModels
             _socialLinksViewModel = socialLinksViewModel;
 
             _authViewModel = authViewModel;
+
+            _usersViewModel = usersViewModel;
+
+            _userEditViewModel = userEditViewModel;
 
             _authViewModel.WasSigned += ManageUi;
 
@@ -133,6 +144,11 @@ namespace Pair.App.Desktop.ViewModels
                     this.CurrentPage = new SocialLinksPage(_socialLinksViewModel);
                     this.CurrentPageViewModel = _socialLinkEditViewModel;
                     break;
+                case 3:
+                    this.CurrentPage = new UsersTablePage(_usersViewModel);
+                    this.CurrentPageViewModel = _userEditViewModel;
+                    break;
+
             }
         }
 
@@ -141,6 +157,10 @@ namespace Pair.App.Desktop.ViewModels
             if (this.CurrentPageViewModel is IEditViewModel<Person>)
             {
                 this.CurrentPage = new EditPage(this.CurrentPageViewModel as IEditViewModel<Person>);
+            }
+            if (this.CurrentPageViewModel is IEditViewModel<User>)
+            {
+                this.CurrentPage = new UserEditPage(this.CurrentPageViewModel as IEditViewModel<User>);
             }
             else
             {
@@ -153,6 +173,10 @@ namespace Pair.App.Desktop.ViewModels
             if (CurrentPageViewModel is IEditViewModel<Person>)
             {
                 await this._personsViewModel.DeleteCommand.ExecuteAsync();
+            }
+            if(CurrentPageViewModel is IEditViewModel<User>)
+            {
+                await this._usersViewModel.DeleteCommand.ExecuteAsync();
             }
             else
             {

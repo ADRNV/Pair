@@ -37,6 +37,8 @@
             <sys:String x:Key="Exit">Выйти</sys:String>
             <sys:String x:Key="FromApp">из приложения</sys:String>
             <sys:String x:Key="FromUser">из сеанса</sys:String>
+            <sys:String x:Key="Permissions">Права</sys:String>
+            <sys:String x:Key="Users">Пользователеи</sys:String>
             <vms:ViewModelLocator x:Key="ViewModelLocator"/>
         </ResourceDictionary>
     </Application.Resources>

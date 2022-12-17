@@ -29,6 +29,7 @@
             <MenuItem Header="{StaticResource Tables}" IsEnabled="{Binding CanRead, NotifyOnSourceUpdated=True}">
                 <MenuItem x:Name="personsTable" Header="{StaticResource PersonsTableName}" Command="{Binding ToTablePageCommand}" CommandParameter="1"/>
                 <MenuItem Header="{StaticResource SocialLinksTableName}" Command="{Binding ToTablePageCommand}" CommandParameter="2"/>
+                <MenuItem Header="{StaticResource Users}" Command="{Binding ToTablePageCommand}" CommandParameter="3"/>
             </MenuItem>
 
             <MenuItem Header="{StaticResource Search}">

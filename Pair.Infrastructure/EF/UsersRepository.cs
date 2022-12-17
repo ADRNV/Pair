@@ -15,7 +15,7 @@ namespace Pair.Infrastructure.EF
             _db = context;
         }
 
-        public Task<bool> Delete(Core.Models.User user)
+        public async Task<bool> Delete(Core.Models.User user)
         {
             var entity = user.Adapt<User>();
 
@@ -23,7 +23,9 @@ namespace Pair.Infrastructure.EF
 
             _db.Entry(entity).State = EntityState.Deleted;
 
-            return Task.FromResult(true);
+            await _db.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<IEnumerable<Core.Models.User>> Get()
@@ -48,10 +50,12 @@ namespace Pair.Infrastructure.EF
 
             _db.Entry(entity).State = EntityState.Added;
 
+            await _db.SaveChangesAsync();
+
             return id.Entity.Id;
         }
 
-        public Task<bool> Update(Core.Models.User user)
+        public async Task<bool> Update(Core.Models.User user)
         {
             var entity = user.Adapt<User>();
 
@@ -59,7 +63,9 @@ namespace Pair.Infrastructure.EF
 
             _db.Entry(entity).State = EntityState.Modified;
 
-            return Task.FromResult(true);
+            await _db.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task<Core.Models.User?> GetByLogin(string login)

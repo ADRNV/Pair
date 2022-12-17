@@ -37,6 +37,9 @@ namespace Pair.App.Desktop.IoC
 
             this.Bind<IAuthRepository<User>>()
                 .To<UsersRepository>();
+
+            this.Bind<IRepository<User>>()
+                .To<UsersRepository>();
         }
     }
 }
