@@ -6,7 +6,7 @@ namespace Pair.App.Desktop.ViewModels
 {
     public class SocialLinkEditViewModel : EditViewModelBase<SocialLink>
     {
-        public SocialLinkEditViewModel(IRepository<SocialLink> repository) : base(repository)
+        public SocialLinkEditViewModel(ISocialLinksRepository repository) : base(repository)
         {
         }
 

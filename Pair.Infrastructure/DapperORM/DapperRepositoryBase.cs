@@ -1,4 +1,5 @@
-﻿using Dapper.FluentMap;
+﻿using Dapper;
+using Dapper.FluentMap;
 using Dapper.FluentMap.Dommel;
 using Dommel;
 using Microsoft.Extensions.Configuration;
@@ -66,6 +67,8 @@ namespace Pair.Infrastructure.DapperORM
         public async virtual Task<bool> Update(TEntity obj) =>
             await _connection.UpdateAsync(obj);
 
+        public abstract Task<IEnumerable<TEntity>> Find(params string[] searchParams);
+        
         private bool _disposed = false;
 
         ~DapperRepositoryBase() =>

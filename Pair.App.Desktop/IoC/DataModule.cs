@@ -17,12 +17,12 @@ namespace Pair.App.Desktop.IoC
                 .AddJsonFile(@"AppSetting.json", false)
                 .Build();
 
-            this.Bind<IRepository<Person>>()
+            this.Bind<IPersonsRepository>()
                 .To<PersonsRepository>()
                 .InSingletonScope()
                 .WithConstructorArgument("configuration", configuration);
 
-            this.Bind<IRepository<SocialLink>>()
+            this.Bind<ISocialLinksRepository>()
                 .To<SocialLinksRepository>()
                 .InSingletonScope()
                 .WithConstructorArgument("configuration", configuration);

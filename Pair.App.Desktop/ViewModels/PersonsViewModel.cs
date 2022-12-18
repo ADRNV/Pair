@@ -6,7 +6,7 @@ namespace Pair.App.Desktop.ViewModels
 {
     public class PersonsViewModel : TableViewModelBase<Person>
     {
-        public PersonsViewModel(IRepository<Person> repository) : base(repository)
+        public PersonsViewModel(IPersonsRepository repository) : base(repository)
         {
 
         }

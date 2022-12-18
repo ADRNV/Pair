@@ -29,5 +29,18 @@ namespace Pair.Infrastructure.DapperORM
                 return p;
             });
         }
+
+        public override async Task<IEnumerable<Person>> Find(params string[] searchParams)
+        {
+            var sql = "SELECT * FROM Persons P WHERE Name = @name OR Bio = @bio";
+
+            var parameters = new DynamicParameters();
+
+            parameters.Add("@name", searchParams[0]);
+
+            parameters.Add("@bio", searchParams[1]);
+
+            return await _connection.QueryAsync<Person>(sql, parameters);
+        }
     }
 }
