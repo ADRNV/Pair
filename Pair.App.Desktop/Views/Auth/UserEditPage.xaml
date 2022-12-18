@@ -28,7 +28,7 @@
             <TextBox Text="{Binding Password}"/>
             <ComboBox ItemsSource="{Binding Permissions}" SelectedItem="{Binding Permissions, Mode=TwoWay}"></ComboBox>
             <TextBox/>
-            <Button Content="{StaticResource Apply}" Command="{Binding AddCommand}" Cursor="Hand"/>
+            <Button Content="{StaticResource Apply}" Command="{Binding AddOrEditCommand}" Cursor="Hand"/>
             <Label/>
             <Button Content="{StaticResource Cancel}" Command="{Binding CancelCommand}" Cursor="Hand"/>
         </StackPanel>

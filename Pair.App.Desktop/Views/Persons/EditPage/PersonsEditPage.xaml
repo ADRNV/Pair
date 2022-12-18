@@ -33,7 +33,7 @@
             <TextBox Text="{Binding PersonAge}"/>
             <TextBox Text="{Binding PersonBio}"/>
             <TextBox/>
-            <Button Content="{StaticResource Apply}" Command="{Binding AddCommand}" Cursor="Hand"/>
+            <Button Content="{StaticResource Apply}" Command="{Binding AddOrEditCommand}" Cursor="Hand"/>
             <Label/>
             <Button Content="{StaticResource Cancel}" Command="{Binding CancelCommand}" Cursor="Hand"/>
         </StackPanel>

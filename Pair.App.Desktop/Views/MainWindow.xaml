@@ -21,7 +21,7 @@
             <MenuItem Header="{StaticResource Actions}" IsEnabled="{Binding CanChange, NotifyOnSourceUpdated=True}">
 
                 <MenuItem Header="{StaticResource Add}" Command="{Binding AddCommand}"/>
-                <MenuItem Header="{StaticResource Edit}"/>
+                <MenuItem Header="{StaticResource Edit}" Command="{Binding EditCommand}"/>
                 <MenuItem Header="{StaticResource Delete}" Command="{Binding DeleteCommand}"/>
 
             </MenuItem>

@@ -7,7 +7,7 @@
       xmlns:viewmodels="clr-namespace:Pair.App.Desktop.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800" 
-      d:DataContext="{d:DesignInstance Type=viewmodels:SocialLinksViewModel}"
+      d:DataContext="{d:DesignInstance Type=viewmodels:SocialLinkEditViewModel}"
       Title="SocialLinksEditPage">
 
     <Grid>
@@ -26,7 +26,7 @@
             <TextBox Text="{Binding Name}"/>
             <TextBox Text="{Binding Link}"/>
             <TextBox Text="{Binding PersonId}"/>
-            <Button Content="{StaticResource Apply}" Command="{Binding AddCommand}" Cursor="Hand"/>
+            <Button Content="{StaticResource Apply}" Command="{Binding AddOrEditCommand}" Cursor="Hand"/>
             <Label/>
             <Button Content="{StaticResource Cancel}" Command="{Binding CancelCommand}" Cursor="Hand"/>
         </StackPanel>

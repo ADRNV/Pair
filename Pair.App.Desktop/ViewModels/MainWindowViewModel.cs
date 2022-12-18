@@ -8,6 +8,7 @@ using Pair.App.Desktop.Views.SocialLinks.EditPage;
 using Pair.Core.Models;
 using Pair.Infrastructure.EF.Security.Entities.Configurations;
 using System;
+using System.Transactions;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
@@ -124,6 +125,8 @@ namespace Pair.App.Desktop.ViewModels
 
         public IMvxCommand AddCommand => new MvxCommand(Add);
 
+        public IMvxCommand EditCommand => new MvxCommand(Edit);
+
         public IMvxCommand DeleteCommand => new MvxCommand(Delete);
 
         public IMvxCommand ExitFromUserCommand => new MvxCommand(ExitFromUser);
@@ -183,13 +186,42 @@ namespace Pair.App.Desktop.ViewModels
 
         }
 
+        private async void Edit()
+        {
+            if (CurrentPage is PersonsPage)
+            {
+                var editVm = (CurrentPageViewModel as IEditViewModel<Person>);
+
+                editVm.Item = _personsViewModel.SelectedItem;
+
+                CurrentPage = new EditPage(editVm);
+            }
+            if (CurrentPage is SocialLinksPage)
+            {
+                var editVm = (CurrentPageViewModel as IEditViewModel<SocialLink>);
+
+                editVm.Item = _socialLinksViewModel.SelectedItem;
+
+                CurrentPage = new SocialLinksEditPage(editVm);
+            }
+            if (CurrentPage is UsersTablePage)
+            {
+                var editVm = (CurrentPageViewModel as IEditViewModel<User>);
+
+                editVm.Item = _usersViewModel.SelectedItem;
+
+                CurrentPage = new UserEditPage(editVm);
+            }
+        }
+
         private void ExitFromUser()
         {
             CanChange = false;
             CanRead = false;
 
             _authViewModel.Signed = false;
-
+            _authViewModel.Login = String.Empty;
+            _authViewModel.Password = String.Empty;
             CurrentPage = new AuthPage(_authViewModel);
         }
 
