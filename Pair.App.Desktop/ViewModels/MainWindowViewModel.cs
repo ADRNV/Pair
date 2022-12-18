@@ -8,7 +8,6 @@ using Pair.App.Desktop.Views.SocialLinks.EditPage;
 using Pair.Core.Models;
 using Pair.Infrastructure.EF.Security.Entities.Configurations;
 using System;
-using System.Transactions;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels

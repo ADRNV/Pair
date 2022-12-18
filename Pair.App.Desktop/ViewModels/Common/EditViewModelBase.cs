@@ -38,7 +38,7 @@ namespace Pair.App.Desktop.ViewModels.Common
 
         protected async virtual Task AddOrEdit()
         {
-            if(_item is not null)
+            if (_item is not null)
             {
                 await Edit();
             }
