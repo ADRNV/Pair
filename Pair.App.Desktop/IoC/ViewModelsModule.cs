@@ -1,5 +1,4 @@
-﻿using MvvmCross.Binding.BindingContext;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using Pair.App.Desktop.ViewModels;
 using Pair.App.Desktop.ViewModels.Common;
 using Pair.Core.Models;

@@ -2,11 +2,6 @@
 using Pair.Core.Models;
 using Pair.Core.Repositories;
 using Pair.Infrastructure.EF.Security.Entities.Configurations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pair.App.Desktop.ViewModels
 {
@@ -17,7 +12,7 @@ namespace Pair.App.Desktop.ViewModels
 
         }
 
-        public string Login 
+        public string Login
         {
             get => _item.Login;
 

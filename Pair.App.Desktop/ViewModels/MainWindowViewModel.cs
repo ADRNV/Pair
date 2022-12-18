@@ -8,8 +8,6 @@ using Pair.App.Desktop.Views.SocialLinks.EditPage;
 using Pair.Core.Models;
 using Pair.Infrastructure.EF.Security.Entities.Configurations;
 using System;
-using System.Collections.Generic;
-using System.Security.Policy;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
@@ -174,7 +172,7 @@ namespace Pair.App.Desktop.ViewModels
             {
                 await this._personsViewModel.DeleteCommand.ExecuteAsync();
             }
-            if(CurrentPageViewModel is IEditViewModel<User>)
+            if (CurrentPageViewModel is IEditViewModel<User>)
             {
                 await this._usersViewModel.DeleteCommand.ExecuteAsync();
             }
