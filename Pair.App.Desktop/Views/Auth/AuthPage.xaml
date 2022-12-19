@@ -11,6 +11,9 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AuthPage">
 
+    <Page.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding SignInCommand}"/>
+    </Page.InputBindings>
     <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
        
 

@@ -32,7 +32,7 @@ namespace Pair.Infrastructure.DapperORM
 
         public override async Task<IEnumerable<Person>> Find(params string[] searchParams)
         {
-            var sql = "SELECT * FROM Persons P WHERE Name = @name OR Bio = @bio";
+            var sql = "SELECT * FROM Persons P WHERE Name LIKE %@name% OR Bio LIKE %bio%";
 
             var parameters = new DynamicParameters();
 

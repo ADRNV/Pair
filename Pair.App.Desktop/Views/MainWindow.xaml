@@ -14,9 +14,15 @@
         xmlns:viewmodels="clr-namespace:Pair.App.Desktop.ViewModels"
         DataContext="{Binding ViewModel, Source={StaticResource ViewModelLocator}}" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         Title="MainWindow" Height="450" Width="800">
+    <Window.InputBindings>
+        <KeyBinding Key="Esc" Command="{Binding ExitFromAppCommand}"/>
+        <KeyBinding Key="A" Modifiers="Alt" Command="{Binding AddCommand}"/>
+        <KeyBinding Key="D" Modifiers="Alt" Command="{Binding DeleteCommand}"/>
+        <KeyBinding Key="P" Modifiers="Alt" Command="{Binding ToTablePageCommand}" CommandParameter="1"/>
+        <KeyBinding Key="S" Modifiers="Alt" Command="{Binding ToTablePageCommand}" CommandParameter="2"/>
+        <KeyBinding Key="U" Modifiers="Alt" Command="{Binding ToTablePageCommand}" CommandParameter="3"/>
+    </Window.InputBindings>
     <DockPanel>
-        
-        
         <Menu DockPanel.Dock="Top" VerticalAlignment="Center" Background="{StaticResource MaterialDesignDarkBackground}">
             <MenuItem Header="{StaticResource Actions}" IsEnabled="{Binding UiPermissions.CanChange, NotifyOnSourceUpdated=True}">
 
@@ -35,7 +41,7 @@
             <MenuItem Header="{StaticResource Search}">
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="SearchBox" Width="200"/>
-                    <Button Content="{StaticResource Search}" Command="{Binding SearchCommand}" CommandParameter="{Binding ElementName=SearchBox, Path=Text}"/>
+                    <Button Content="{StaticResource Search}" Command="{Binding SearchCommand}" CommandParameter="{Binding ElementName=SearchBox, Path=Text, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </MenuItem>
 
