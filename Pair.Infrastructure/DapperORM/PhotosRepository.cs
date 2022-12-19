@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using Pair.Core.Models;
 
 namespace Pair.Infrastructure.DapperORM
@@ -9,9 +10,15 @@ namespace Pair.Infrastructure.DapperORM
         {
         }
 
-        public override Task<IEnumerable<Photo>> Find(params string[] searchParams)
+        public override async Task<IEnumerable<Photo>> Find(params string[] searchParams)
         {
-            throw new NotImplementedException();
+            var sql = "SELECT * FROM Photos P WHERE P.Id = @id";
+
+            var paramters = new DynamicParameters();
+
+            paramters.Add("@id", searchParams[0]);
+
+            return await _connection.QueryAsync<Photo>()
         }
     }
 }
