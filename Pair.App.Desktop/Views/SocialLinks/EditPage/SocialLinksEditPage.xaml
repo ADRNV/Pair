@@ -26,7 +26,8 @@
             <TextBox Text="{Binding Name}"/>
             <TextBox Text="{Binding Link}"/>
             <TextBox Text="{Binding PersonId}"/>
-            <Button Content="{StaticResource Apply}" Command="{Binding AddOrEditCommand}" Cursor="Hand"/>
+            <Button Content="{StaticResource Apply}" Command="{Binding AddCommand}" Cursor="Hand"/>
+            <Button Content="{StaticResource Apply}" Command="{Binding EditCommand}" Cursor="Hand"/>
             <Label/>
             <Button Content="{StaticResource Cancel}" Command="{Binding CancelCommand}" Cursor="Hand"/>
         </StackPanel>

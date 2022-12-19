@@ -10,6 +10,7 @@ using Pair.Core.Models;
 using Pair.Infrastructure.EF.Security.Entities.Configurations;
 using Pair.Services;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
@@ -17,12 +18,14 @@ namespace Pair.App.Desktop.ViewModels
     ///TODO 1 Decomposite this <summary>
     public class MainWindowViewModel : ViewModelBase, IMainViewModel
     {
+        #region Fields
+
         private Page? _currentPage;
 
         private readonly AdminService _adminService;
 
         private UiPermissions _uiPermissions = new UiPermissions();
-
+        
         private ICommonEditViewModel _currentPageViewModel;
 
         private ICommonEditViewModel _personEditViewModel;
@@ -39,6 +42,9 @@ namespace Pair.App.Desktop.ViewModels
 
         private AuthViewModel _authViewModel;
 
+        private string _searchString;
+        #endregion
+        
         public MainWindowViewModel(IEditViewModel<Person> personEditViewModel, IEditViewModel<SocialLink> socialLinkEditViewModel,
             ITableViewModel<Person> personsViewModel, ITableViewModel<SocialLink> socialLinksViewModel, AuthViewModel authViewModel,
             IEditViewModel<User> userEditViewModel, ITableViewModel<User> usersViewModel, AdminService adminService)
@@ -74,6 +80,7 @@ namespace Pair.App.Desktop.ViewModels
                 RaisePropertyChanged(nameof(UiPermissions));
             }
         }
+
         private void ManageUi(Permissions permission)
         {
             //if (_adminService.GetCurrentUserPermission())
@@ -107,6 +114,17 @@ namespace Pair.App.Desktop.ViewModels
             }
         }
 
+        public string SearchString
+        {
+            get => _searchString;
+
+            set
+            {
+                _searchString = value;
+                RaisePropertyChanged(nameof(SearchString));
+            }
+        }
+
         public ICommonEditViewModel CurrentPageViewModel
         {
             get => _currentPageViewModel!;
@@ -126,6 +144,8 @@ namespace Pair.App.Desktop.ViewModels
         public IMvxCommand EditCommand => new MvxCommand(Edit);
 
         public IMvxCommand DeleteCommand => new MvxCommand(Delete);
+
+        public IMvxAsyncCommand SearchCommand => new MvxAsyncCommand(Search);
 
         public IMvxCommand ExitFromUserCommand => new MvxCommand(ExitFromUser);
 
@@ -209,6 +229,18 @@ namespace Pair.App.Desktop.ViewModels
                 editVm.Item = _usersViewModel.SelectedItem;
 
                 CurrentPage = new UserEditPage(editVm);
+            }
+        }
+
+        private async Task Search()
+        {
+            if (CurrentPage is PersonsPage)
+            {
+                await _personsViewModel.SearchCommand.ExecuteAsync(SearchString); 
+            }
+            if (CurrentPage is SocialLinksPage)
+            {
+                await _socialLinksViewModel.SearchCommand.ExecuteAsync(SearchString);
             }
         }
 

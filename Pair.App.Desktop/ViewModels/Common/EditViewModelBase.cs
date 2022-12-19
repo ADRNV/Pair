@@ -32,32 +32,20 @@ namespace Pair.App.Desktop.ViewModels.Common
             }
         }
 
-        public IMvxAsyncCommand AddOrEditCommand => new MvxAsyncCommand(AddOrEdit);
+        public IMvxAsyncCommand AddCommand => new MvxAsyncCommand(Add);
+
+        public IMvxAsyncCommand EditCommand => new MvxAsyncCommand(Edit);
 
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
-
-        protected async virtual Task AddOrEdit()
-        {
-            if (_item is not null)
-            {
-                await Edit();
-            }
-            else
-            {
-                await Add();
-            }
-        }
 
         protected async virtual Task Add()
         {
             await _repository.Insert(Item);
-
-            _item = new T();
         }
 
         protected async virtual Task Edit()
         {
-            await _repository.Update(_item);
+            await _repository.Update(Item);
 
             _item = new T();
         }

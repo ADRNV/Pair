@@ -14,8 +14,6 @@ namespace Pair.App.Desktop.ViewModels.Common
 
         private T? _selectedItem;
 
-        private string _searchString;
-
         public ObservableCollection<T> Items
         {
             get => _items!;
@@ -24,17 +22,6 @@ namespace Pair.App.Desktop.ViewModels.Common
             {
                 _items = value;
                 RaisePropertyChanged(nameof(Items));
-            }
-        }
-
-        public string searchString
-        {
-            get => _searchString;
-
-            set
-            {
-                _searchString = value;
-                RaiseAllPropertiesChanged();
             }
         }
 
@@ -56,6 +43,8 @@ namespace Pair.App.Desktop.ViewModels.Common
 
         public virtual IMvxAsyncCommand DeleteCommand => new MvxAsyncCommand(Delete, CanDelete);
 
+        public virtual IMvxAsyncCommand<string> SearchCommand => new MvxAsyncCommand<string>(Search);
+
         protected async virtual Task Delete()
         {
             await _repository.Delete(SelectedItem);
@@ -63,9 +52,9 @@ namespace Pair.App.Desktop.ViewModels.Common
 
         protected virtual bool CanDelete() => _selectedItem is not null;
 
-        protected virtual async Task Search()
+        protected virtual async Task Search(string obj)
         {
-            var items = await _repository.Find();
+            var items = await _repository.Find(obj);
 
             _items = new ObservableCollection<T>(items);
         }
