@@ -18,7 +18,7 @@ namespace Pair.Infrastructure.DapperORM
 
             paramters.Add("@id", searchParams[0]);
 
-            return await _connection.QueryAsync<Photo>(sql);
+            return await _connection.QueryAsync<Photo>()
         }
     }
 }
