@@ -65,7 +65,7 @@ namespace Pair.App.Desktop.ViewModels.Common
 
         protected virtual async Task Search()
         {
-           var items = await _repository.Find();
+            var items = await _repository.Find();
 
             _items = new ObservableCollection<T>(items);
         }

@@ -161,7 +161,7 @@ namespace Pair.App.Desktop.ViewModels
             {
                 this.CurrentPage = new UserEditPage(this.CurrentPageViewModel as IEditViewModel<User>);
             }
-            if(this.CurrentPageViewModel is IEditViewModel<SocialLink>)
+            if (this.CurrentPageViewModel is IEditViewModel<SocialLink>)
             {
                 this.CurrentPage = new SocialLinksEditPage(this.CurrentPageViewModel as IEditViewModel<SocialLink>);
             }
