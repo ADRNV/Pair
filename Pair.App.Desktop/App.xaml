@@ -38,7 +38,7 @@
             <sys:String x:Key="FromApp">из приложения</sys:String>
             <sys:String x:Key="FromUser">из сеанса</sys:String>
             <sys:String x:Key="Permissions">Права</sys:String>
-            <sys:String x:Key="Users">Пользователеи</sys:String>
+            <sys:String x:Key="Users">Пользователи</sys:String>
             <vms:ViewModelLocator x:Key="ViewModelLocator"/>
         </ResourceDictionary>
     </Application.Resources>
