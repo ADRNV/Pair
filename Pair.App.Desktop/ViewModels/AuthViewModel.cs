@@ -3,6 +3,7 @@ using Pair.App.Desktop.ViewModels.Common;
 using Pair.Core.Models;
 using Pair.Core.Repositories;
 using Pair.Infrastructure.EF.Security.Entities.Configurations;
+using Pair.Services;
 using System;
 using System.Threading.Tasks;
 using System.Windows;

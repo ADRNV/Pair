@@ -18,7 +18,7 @@
         
         
         <Menu DockPanel.Dock="Top" VerticalAlignment="Center" Background="{StaticResource MaterialDesignDarkBackground}">
-            <MenuItem Header="{StaticResource Actions}" IsEnabled="{Binding CanChange, NotifyOnSourceUpdated=True}">
+            <MenuItem Header="{StaticResource Actions}" IsEnabled="{Binding UiPermissions.CanChange, NotifyOnSourceUpdated=True}">
 
                 <MenuItem Header="{StaticResource Add}" Command="{Binding AddCommand}"/>
                 <MenuItem Header="{StaticResource Edit}" Command="{Binding EditCommand}"/>
@@ -26,10 +26,10 @@
 
             </MenuItem>
 
-            <MenuItem Header="{StaticResource Tables}" IsEnabled="{Binding CanRead, NotifyOnSourceUpdated=True}">
+            <MenuItem Header="{StaticResource Tables}" IsEnabled="{Binding UiPermissions.CanRead, NotifyOnSourceUpdated=True}">
                 <MenuItem x:Name="personsTable" Header="{StaticResource PersonsTableName}" Command="{Binding ToTablePageCommand}" CommandParameter="1"/>
                 <MenuItem Header="{StaticResource SocialLinksTableName}" Command="{Binding ToTablePageCommand}" CommandParameter="2"/>
-                <MenuItem Header="{StaticResource Users}" Command="{Binding ToTablePageCommand}" CommandParameter="3"/>
+                <MenuItem Header="{StaticResource Users}" Command="{Binding ToTablePageCommand}" CommandParameter="3" IsEnabled="{Binding UiPermissions.CanManage, NotifyOnSourceUpdated=True}"/>
             </MenuItem>
 
             <MenuItem Header="{StaticResource Search}">

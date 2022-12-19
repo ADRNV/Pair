@@ -1,4 +1,5 @@
 ﻿using MvvmCross.Commands;
+using Pair.App.Desktop.UiModels;
 using Pair.App.Desktop.ViewModels.Common;
 using Pair.App.Desktop.Views.Auth;
 using Pair.App.Desktop.Views.EditPage;
@@ -7,20 +8,20 @@ using Pair.App.Desktop.Views.SocialLinks;
 using Pair.App.Desktop.Views.SocialLinks.EditPage;
 using Pair.Core.Models;
 using Pair.Infrastructure.EF.Security.Entities.Configurations;
+using Pair.Services;
 using System;
 using System.Windows.Controls;
 
 namespace Pair.App.Desktop.ViewModels
 {
     ///TODO 1 Decomposite this <summary>
-    ///TODO 2 Move Permissions properties to class
     public class MainWindowViewModel : ViewModelBase, IMainViewModel
     {
         private Page? _currentPage;
 
-        private bool _canChange = false;
+        private readonly AdminService _adminService;
 
-        private bool _canRead = false;
+        private UiPermissions _uiPermissions = new UiPermissions();
 
         private ICommonEditViewModel _currentPageViewModel;
 
@@ -40,7 +41,7 @@ namespace Pair.App.Desktop.ViewModels
 
         public MainWindowViewModel(IEditViewModel<Person> personEditViewModel, IEditViewModel<SocialLink> socialLinkEditViewModel,
             ITableViewModel<Person> personsViewModel, ITableViewModel<SocialLink> socialLinksViewModel, AuthViewModel authViewModel,
-            IEditViewModel<User> userEditViewModel, ITableViewModel<User> usersViewModel)
+            IEditViewModel<User> userEditViewModel, ITableViewModel<User> usersViewModel, AdminService adminService)
         {
             _personEditViewModel = personEditViewModel;
 
@@ -56,44 +57,42 @@ namespace Pair.App.Desktop.ViewModels
 
             _userEditViewModel = userEditViewModel;
 
+            _adminService = adminService;
+
             _authViewModel.WasSigned += ManageUi;
 
             CurrentPage = new AuthPage(_authViewModel);
         }
 
+        public UiPermissions UiPermissions
+        {
+            get => _uiPermissions;
+
+            set
+            {
+                _uiPermissions = value;
+                RaisePropertyChanged(nameof(UiPermissions));
+            }
+        }
         private void ManageUi(Permissions permission)
         {
+            //if (_adminService.GetCurrentUserPermission())
+            //{
+            //    UiPermissions.CanManage = true;
+            //    UiPermissions.CanChange = true;
+            //    UiPermissions.CanRead = true;
+            //    return;
+            //}
             switch (permission)
             {
                 case Permissions.ReadAndWrite | Permissions.Manage:
-                    CanChange = true;
-                    CanRead = true;
+                    UiPermissions.CanChange = true;
+                    UiPermissions.CanRead = true;
+                    UiPermissions.CanManage = true;
                     break;
                 case Permissions.Read:
-                    CanRead = true;
+                    UiPermissions.CanRead = true;
                     break;
-            }
-        }
-
-        public bool CanChange
-        {
-            get => _canChange;
-
-            set
-            {
-                _canChange = value;
-                RaisePropertyChanged(nameof(CanChange));
-            }
-        }
-
-        public bool CanRead
-        {
-            get => _canRead;
-
-            set
-            {
-                _canRead = value;
-                RaisePropertyChanged(nameof(CanRead));
             }
         }
 
@@ -162,7 +161,7 @@ namespace Pair.App.Desktop.ViewModels
             {
                 this.CurrentPage = new UserEditPage(this.CurrentPageViewModel as IEditViewModel<User>);
             }
-            else
+            if(this.CurrentPageViewModel is IEditViewModel<SocialLink>)
             {
                 this.CurrentPage = new SocialLinksEditPage(this.CurrentPageViewModel as IEditViewModel<SocialLink>);
             }
@@ -215,8 +214,8 @@ namespace Pair.App.Desktop.ViewModels
 
         private void ExitFromUser()
         {
-            CanChange = false;
-            CanRead = false;
+            UiPermissions.CanChange = false;
+            UiPermissions.CanRead = false;
 
             _authViewModel.Signed = false;
             _authViewModel.Login = String.Empty;

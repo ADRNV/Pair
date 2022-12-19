@@ -2,6 +2,7 @@
 using Pair.App.Desktop.ViewModels;
 using Pair.App.Desktop.ViewModels.Common;
 using Pair.Core.Models;
+using Pair.Services;
 
 namespace Pair.App.Desktop.IoC
 {
@@ -11,6 +12,9 @@ namespace Pair.App.Desktop.IoC
         {
             this.Bind<IMainViewModel>()
                 .To<MainWindowViewModel>();
+
+            this.Bind<AdminService>()
+                .ToSelf();
 
             //this.Bind<ICrudViewModel<SocialLink>>()
             //    .To<ICrudViewModel<SocialLink>>()

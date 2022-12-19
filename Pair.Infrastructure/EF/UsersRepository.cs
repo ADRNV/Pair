@@ -75,5 +75,10 @@ namespace Pair.Infrastructure.EF
 
             return user.Adapt<Core.Models.User?>();
         }
+
+        public Task<IEnumerable<Core.Models.User>> Find(params string[] searchParams)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

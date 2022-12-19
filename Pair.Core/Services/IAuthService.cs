@@ -1,9 +1,7 @@
-﻿using Pair.Core.Models;
-
-namespace Pair.Core.Services
+﻿namespace Pair.Core.Services
 {
-    public interface IAuthService
+    public interface IAuthService<U> where U: class
     {
-        public Task<bool> SignIn(User user);
+        Task<bool?> SignIn(U user);
     }
 }
