@@ -16,15 +16,24 @@
       Title="EditPage">
 
     <Grid>
-        <DataGrid ItemsSource="{Binding Items}" IsReadOnly="True" SelectionMode="Single" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}"/>
                         <TextBlock Text="{Binding Name}"/>
                         <TextBlock Text="{Binding Link}"/>
+                        <TextBlock Text="{Binding PersonId}"/>
                     </StackPanel>
                 </DataTemplate>
             </DataGrid.ItemTemplate>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{StaticResource Id}" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="{StaticResource Link}" Binding="{Binding Link}"/>
+                <DataGridTextColumn Header="{StaticResource AssignWith}" Binding="{Binding PersonId}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Page>

@@ -11,16 +11,27 @@
       Title="PersonsPage">
 
     <Grid>
-        <DataGrid ItemsSource="{Binding Items}" IsReadOnly="True" SelectionMode="Single" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <DataGrid.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}"/>
                         <TextBlock Text="{Binding Name}"/>
                         <TextBlock Text="{Binding Age}"/>
                         <TextBlock Text="{Binding Bio}"/>
+                        <TextBlock Text="{Binding Sex}"/>
+                        <ComboBox ItemsSource="{Binding SocialLinks}"/>
                     </StackPanel>
                 </DataTemplate>
             </DataGrid.ItemTemplate>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{StaticResource Id}" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="{StaticResource Age}" Binding="{Binding Age}"/>
+                <DataGridTextColumn Header="{StaticResource Bio}" Binding="{Binding Bio}"/>
+                <DataGridTextColumn Header="{StaticResource Sex}" Binding="{Binding Sex}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Page>
