@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using Microsoft.Extensions.Configuration;
 using Pair.Core.Models;
 using Pair.Core.ORM;
@@ -22,13 +23,13 @@ namespace Pair.Infrastructure.DapperORM
 
             var parameters = new DynamicParameters();
 
-            parameters.Add("@name", searchParams[0]);
+            parameters.Add("@name", $"%{searchParams[0]}%");
 
-            parameters.Add("@link", searchParams[1]);
+            parameters.Add("@link", $"%{searchParams[1]}%");
 
             return await _connection.QueryAsync<SocialLink>(sql, parameters);
         }
-
+#if !DEBUG
         public override async Task<IEnumerable<SocialLink>> Get()
         {
             var sql = "SELECT * FROM SocialLinks S JOIN Persons P ON P.Id = S.PersonId";
@@ -39,6 +40,8 @@ namespace Pair.Infrastructure.DapperORM
 
                 return s;
             });
+
         }
+#endif
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using Microsoft.Extensions.Configuration;
 using Pair.Core.Models;
 using Pair.Core.ORM;
@@ -17,7 +18,7 @@ namespace Pair.Infrastructure.DapperORM
         {
 
         }
-
+#if !DEBUG
         public async override Task<IEnumerable<Person>> Get()
         {
             var sql = @"SELECT * FROM Persons P INNER JOIN SocialLinks S ON S.PersonId = P.Id";
@@ -28,17 +29,18 @@ namespace Pair.Infrastructure.DapperORM
 
                 return p;
             });
-        }
 
+        }
+#endif
         public override async Task<IEnumerable<Person>> Find(params string[] searchParams)
         {
-            var sql = "SELECT * FROM Persons P WHERE Name LIKE %@name% OR Bio LIKE %bio%";
+            var sql = "SELECT * FROM Persons P WHERE Name LIKE @name OR Bio LIKE @bio";
 
             var parameters = new DynamicParameters();
 
-            parameters.Add("@name", searchParams[0]);
+            parameters.Add("@name", $"%{searchParams[0]}%");
 
-            parameters.Add("@bio", searchParams[1]);
+            parameters.Add("@bio", $"%{searchParams[1]}%");
 
             return await _connection.QueryAsync<Person>(sql, parameters);
         }
