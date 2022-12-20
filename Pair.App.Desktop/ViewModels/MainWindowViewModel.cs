@@ -145,7 +145,7 @@ namespace Pair.App.Desktop.ViewModels
 
         public IMvxCommand DeleteCommand => new MvxCommand(Delete);
 
-        public IMvxAsyncCommand<string> SearchCommand => new MvxAsyncCommand<string>(Search);
+        public IMvxCommand<string> SearchCommand => new MvxCommand<string>(Search);
 
         public IMvxCommand ExitFromUserCommand => new MvxCommand(ExitFromUser);
 
@@ -232,15 +232,15 @@ namespace Pair.App.Desktop.ViewModels
             }
         }
 
-        private async Task Search(string obj)
+        private void Search(string obj)
         {
             if (CurrentPage is PersonsPage)
             {
-                await _personsViewModel.SearchCommand.ExecuteAsync(obj); 
+                _personsViewModel.SearchCommand.ExecuteAsync(obj); 
             }
             if (CurrentPage is SocialLinksPage)
             {
-                await _socialLinksViewModel.SearchCommand.ExecuteAsync(obj);
+                _socialLinksViewModel.SearchCommand.ExecuteAsync(obj);
             }
         }
 
