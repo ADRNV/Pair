@@ -20,7 +20,6 @@
                         <TextBlock Text="{Binding Age}"/>
                         <TextBlock Text="{Binding Bio}"/>
                         <TextBlock Text="{Binding Sex}"/>
-                        <ComboBox ItemsSource="{Binding SocialLinks}"/>
                     </StackPanel>
                 </DataTemplate>
             </DataGrid.ItemTemplate>
