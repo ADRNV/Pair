@@ -14,6 +14,9 @@
 
         public string Sex { get; set; } = string.Empty;
 
-        public byte[]? Photo { get; set; }
+        public string ImageUri { get; set; }
+
+        public int SocialCredit { get; set; }
+
     }
 }
