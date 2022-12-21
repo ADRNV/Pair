@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Interests]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	[InterestName] VARCHAR(MAX),
+	[PersonId] INT NULL FOREIGN KEY REFERENCES Persons(Id),
+	CONSTRAINT fk_interest_person_id FOREIGN KEY(PersonId) REFERENCES Persons(Id) ON DELETE CASCADE
+)

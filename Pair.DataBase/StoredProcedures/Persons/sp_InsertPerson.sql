@@ -1,8 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[sp_InsertPerson]
-	@Name VARCHAR(64),
+	@Name NVARCHAR(MAX),
 	@Bio NVARCHAR(MAX),
 	@Age TINYINT,
-	@Sex NVARCHAR(10)
+	@Sex NVARCHAR(MAX),
+	@ImageUri NVARCHAR(MAX),
+	@SocialCredit INT
 AS
-	INSERT INTO Persons VALUES(@Name, @Bio, @Age, @Sex);
+	INSERT INTO Persons VALUES(@Name, @Bio, @Age, @Sex, @ImageUri, @SocialCredit);
 RETURN 0

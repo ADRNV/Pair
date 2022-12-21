@@ -1,6 +1,0 @@
-﻿CREATE TABLE [dbo].[Photos]
-(
-	[Id] INT NOT NULL PRIMARY KEY,
-	[PersonId] INT NOT NULL FOREIGN KEY REFERENCES Persons(Id),
-	[Photo] VARBINARY
-)

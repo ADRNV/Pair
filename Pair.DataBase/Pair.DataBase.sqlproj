@@ -61,6 +61,7 @@
     <Folder Include="StoredProcedures\Persons" />
     <Folder Include="StoredFunctions" />
     <Folder Include="StoredProcedures\SocialLinks" />
+    <Folder Include="StoredProcedures\Interests" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Persons.sql" />
@@ -71,6 +72,8 @@
     <Build Include="StoredFunctions\sf_SelectAllPersons.sql" />
     <Build Include="StoredProcedures\SocialLinks\sp_InsertSocialLink.sql" />
     <Build Include="StoredProcedures\SocialLinks\sp_UpdateSocialLink.sql" />
-    <Build Include="Tables\Photos.sql" />
+    <Build Include="Tables\Interests.sql" />
+    <Build Include="StoredProcedures\Interests\sp_InsertInterest.sql" />
+    <Build Include="StoredProcedures\Interests\sp_UpdateInsterst.sql" />
   </ItemGroup>
 </Project>
