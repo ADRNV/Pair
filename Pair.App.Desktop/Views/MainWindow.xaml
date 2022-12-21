@@ -38,7 +38,7 @@
                 <MenuItem Header="{StaticResource Users}" Command="{Binding ToTablePageCommand}" CommandParameter="3" IsEnabled="{Binding UiPermissions.CanManage, NotifyOnSourceUpdated=True}"/>
             </MenuItem>
 
-            <MenuItem Header="{StaticResource Search}">
+            <MenuItem Header="{StaticResource Search}" IsEnabled="{Binding UiPermissions.CanRead}">
                 <StackPanel Orientation="Horizontal">
                     <TextBox x:Name="SearchBox" Width="200"/>
                     <Button Content="{StaticResource Search}" Command="{Binding SearchCommand}" CommandParameter="{Binding ElementName=SearchBox, Path=Text, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>

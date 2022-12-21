@@ -48,6 +48,8 @@ namespace Pair.App.Desktop.ViewModels.Common
         protected async virtual Task Delete()
         {
             await _repository.Delete(SelectedItem);
+
+            Items = new ObservableCollection<T>(await _repository.Get());
         }
 
         protected virtual bool CanDelete() => _selectedItem is not null;

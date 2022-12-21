@@ -24,9 +24,8 @@
             <TextBox Text="{Binding Password}"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
-            <Button Content="{StaticResource Signin}" Command="{Binding SignInCommand}"/>
             <Label/>
-            <Button Content="{StaticResource Register}"/>
+            <Button Content="{StaticResource Signin}" Command="{Binding SignInCommand}"/>
         </StackPanel>
     </WrapPanel>
 </Page>

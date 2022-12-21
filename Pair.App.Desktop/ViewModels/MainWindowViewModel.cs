@@ -246,8 +246,7 @@ namespace Pair.App.Desktop.ViewModels
 
         private void ExitFromUser()
         {
-            UiPermissions.CanChange = false;
-            UiPermissions.CanRead = false;
+            UiPermissions = new UiPermissions();
 
             _authViewModel.Signed = false;
             _authViewModel.Login = String.Empty;
