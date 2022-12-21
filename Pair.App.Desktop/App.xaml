@@ -40,6 +40,12 @@
             <sys:String x:Key="Permissions">Права</sys:String>
             <sys:String x:Key="Users">Пользователи</sys:String>
             <sys:String x:Key="Id">Id</sys:String>
+            <x:Array x:Key="Genders" Type="{x:Type sys:String}">
+                <sys:String>Муж</sys:String>
+                <sys:String>Жен</sys:String>
+            </x:Array>
+            <sys:String x:Key="SocialCredit">Социальный рейтинг</sys:String>
+            <sys:String x:Key="UploadImage">Загрузить изображение</sys:String>
             <vms:ViewModelLocator x:Key="ViewModelLocator"/>
         </ResourceDictionary>
     </Application.Resources>
