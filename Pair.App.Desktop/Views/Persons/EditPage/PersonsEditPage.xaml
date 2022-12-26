@@ -26,9 +26,10 @@
             <Label Content="{StaticResource Age}"/>
             <Label Content="{StaticResource Bio}"/>
             <Label Content="{StaticResource Sex}"/>
+            <Label Content="{StaticResource InterestName}"/>
             <StackPanel>
                 <Label Content="{StaticResource SocialCredit}"/>
-                <TextBlock Text="{Binding ElementName=SocialRatingSlider, Path=Value, StringFormat={}{0:0}}"/>
+                <TextBox Text="{Binding ElementName=SocialRatingSlider, Path=Value, StringFormat={}{0:0}, Mode=TwoWay}"/>
             </StackPanel>
         </StackPanel>
 
@@ -36,8 +37,19 @@
             <TextBox Text="{Binding PersonName}"/>
             <TextBox Text="{Binding PersonAge}"/>
             <TextBox Text="{Binding PersonBio}"/>
-            <ComboBox ItemsSource="{StaticResource Genders}"/>
-            <Slider x:Name="SocialRatingSlider" Minimum="-1000" Maximum="1000"/>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox ItemsSource="{Binding Interests}" Width="200" SelectedItem="{Binding SelectedInterest}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding InterestName}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Content="{StaticResource Add}" Command="{Binding AddInteresCommand}"/>
+                <Button Content="{StaticResource Delete}" Command="{Binding RemoveInteresCommand}"/>
+            </StackPanel>
+            <ComboBox ItemsSource="{StaticResource Genders}" SelectedItem="{Binding PersonSex}"/>
+            <Slider x:Name="SocialRatingSlider" Minimum="-1000" Maximum="1000" Value="{Binding SocialCredit}"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -55,8 +67,8 @@
                 </StackPanel>
 
                 <DockPanel Margin="10" LastChildFill="False">
-                    <Image DockPanel.Dock="Top"></Image>
-                    <Button DockPanel.Dock="Bottom" Content="{StaticResource UploadImage}"/>
+                    <Image DockPanel.Dock="Top" Source="{Binding ImageLink, NotifyOnSourceUpdated=True}"></Image>
+                    <Button DockPanel.Dock="Bottom" Content="{StaticResource UploadImage}" Command="{Binding AddImageCommand}"/>
                 </DockPanel>
             </Grid>
         </StackPanel>

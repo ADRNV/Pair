@@ -16,9 +16,14 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Id}"/>
+                        <Button>
+                            <Image Source="{Binding ImageUri}"></Image>
+                        </Button>
                         <TextBlock Text="{Binding Name}"/>
                         <TextBlock Text="{Binding Age}"/>
                         <TextBlock Text="{Binding Bio}"/>
+                        <ComboBox ItemsSource="{Binding Interests}"/>
+                        <TextBlock Text="{Binding SocialCredit}"/>
                         <TextBlock Text="{Binding Sex}"/>
                     </StackPanel>
                 </DataTemplate>
@@ -26,9 +31,30 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{StaticResource Id}" Binding="{Binding Id}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ImageUri}" MaxHeight="200" MaxWidth="200"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="{StaticResource Age}" Binding="{Binding Age}"/>
                 <DataGridTextColumn Header="{StaticResource Bio}" Binding="{Binding Bio}"/>
+                <DataGridTemplateColumn Header="{StaticResource InterestName}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox ItemsSource="{Binding Interests}">
+                                <ComboBoxItem>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding InterestName}"/>
+                                    </DataTemplate>
+                                </ComboBoxItem>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="{StaticResource SocialCredit}" Binding="{Binding SocialCredit}"/>
                 <DataGridTextColumn Header="{StaticResource Sex}" Binding="{Binding Sex}"/>
             </DataGrid.Columns>
         </DataGrid>

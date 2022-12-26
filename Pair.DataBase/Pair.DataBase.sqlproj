@@ -75,5 +75,6 @@
     <Build Include="Tables\Interests.sql" />
     <Build Include="StoredProcedures\Interests\sp_InsertInterest.sql" />
     <Build Include="StoredProcedures\Interests\sp_UpdateInsterst.sql" />
+    <Build Include="Tables\InterestsPersons.sql" />
   </ItemGroup>
 </Project>

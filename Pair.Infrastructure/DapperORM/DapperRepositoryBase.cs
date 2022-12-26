@@ -43,12 +43,13 @@ namespace Pair.Infrastructure.DapperORM
                 {
                     c.AddMap(new PersonDapperMap());
                     c.AddMap(new SoclialLinkDapperMap());
+                    c.AddMap(new InterestsPersonsDapperMap());
                     c.ForDommel();
                 });
             };
         }
 
-        public async Task<long> Insert(TEntity obj)
+        public virtual async Task<long> Insert(TEntity obj)
         {
             var id = await _connection.InsertAsync(obj);
             return Convert.ToInt64(id);

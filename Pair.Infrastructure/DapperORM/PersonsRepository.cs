@@ -18,20 +18,20 @@ namespace Pair.Infrastructure.DapperORM
         {
 
         }
-#if !DEBUG
+
         public async override Task<IEnumerable<Person>> Get()
         {
-            var sql = @"SELECT * FROM Persons P INNER JOIN SocialLinks S ON S.PersonId = P.Id";
+            var sql = @"SELECT * FROM Persons P INNER JOIN InterestsPersons I ON I.PersonId = P.Id";
 
-            return await _connection.QueryAsync<Person, SocialLink, Person>(sql, (p, s) =>
+            return await _connection.QueryAsync<Person, Interest, Person>(sql, (p, i) =>
             {
-                p.SocialLinks?.Add(s);
+                p.Interests?.Add(i);
 
                 return p;
             });
 
         }
-#endif
+
         public override async Task<IEnumerable<Person>> Find(params string[] searchParams)
         {
             var sql = "SELECT * FROM Persons P WHERE Name LIKE @name OR Bio LIKE @bio";

@@ -28,6 +28,10 @@ namespace Pair.App.Desktop.IoC
                 .To<SocialLinkEditViewModel>()
                 .InTransientScope();
 
+            this.Bind<IEditViewModel<Interest>>()
+                .To<InterestEditViewModel>()
+                .InTransientScope();
+
             this.Bind<ITableViewModel<Person>>()
                 .To<PersonsViewModel>()
                 .InTransientScope();
@@ -35,6 +39,10 @@ namespace Pair.App.Desktop.IoC
             this.Bind<ITableViewModel<SocialLink>>()
                 .To<SocialLinksViewModel>()
                 .InSingletonScope();
+
+            this.Bind<ITableViewModel<Interest>>()
+                .To<InterestsViewModel>()
+                .InTransientScope();
 
             this.Bind<AuthViewModel>()
                 .ToSelf()

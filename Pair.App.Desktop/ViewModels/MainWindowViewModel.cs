@@ -3,6 +3,8 @@ using Pair.App.Desktop.UiModels;
 using Pair.App.Desktop.ViewModels.Common;
 using Pair.App.Desktop.Views.Auth;
 using Pair.App.Desktop.Views.EditPage;
+using Pair.App.Desktop.Views.Interests;
+using Pair.App.Desktop.Views.Interests.EditPage;
 using Pair.App.Desktop.Views.Persons.MainPage;
 using Pair.App.Desktop.Views.SocialLinks;
 using Pair.App.Desktop.Views.SocialLinks.EditPage;
@@ -32,11 +34,15 @@ namespace Pair.App.Desktop.ViewModels
 
         private ICommonEditViewModel _socialLinkEditViewModel;
 
+        private ICommonEditViewModel _interestEditViewModel;
+
         private readonly ITableViewModel<Person> _personsViewModel;
 
         private readonly ITableViewModel<SocialLink> _socialLinksViewModel;
 
         private readonly ITableViewModel<User> _usersViewModel;
+
+        private readonly ITableViewModel<Interest> _interestsViewModel;
 
         private readonly IEditViewModel<User> _userEditViewModel;
 
@@ -47,7 +53,7 @@ namespace Pair.App.Desktop.ViewModels
         
         public MainWindowViewModel(IEditViewModel<Person> personEditViewModel, IEditViewModel<SocialLink> socialLinkEditViewModel,
             ITableViewModel<Person> personsViewModel, ITableViewModel<SocialLink> socialLinksViewModel, AuthViewModel authViewModel,
-            IEditViewModel<User> userEditViewModel, ITableViewModel<User> usersViewModel, AdminService adminService)
+            IEditViewModel<User> userEditViewModel, ITableViewModel<User> usersViewModel, ITableViewModel<Interest> interestsViewModel, IEditViewModel<Interest> interestEditViewModel, AdminService adminService)
         {
             _personEditViewModel = personEditViewModel;
 
@@ -56,6 +62,10 @@ namespace Pair.App.Desktop.ViewModels
             _personsViewModel = personsViewModel;
 
             _socialLinksViewModel = socialLinksViewModel;
+
+            _interestEditViewModel = interestEditViewModel;
+
+            _interestsViewModel = interestsViewModel;
 
             _authViewModel = authViewModel;
 
@@ -164,6 +174,10 @@ namespace Pair.App.Desktop.ViewModels
                     this.CurrentPageViewModel = _socialLinkEditViewModel;
                     break;
                 case 3:
+                    this.CurrentPage = new InterestsPage(_interestsViewModel);
+                    this.CurrentPageViewModel = _interestEditViewModel;
+                    break;
+                case 4:
                     this.CurrentPage = new UsersTablePage(_usersViewModel);
                     this.CurrentPageViewModel = _userEditViewModel;
                     break;
@@ -185,6 +199,10 @@ namespace Pair.App.Desktop.ViewModels
             {
                 this.CurrentPage = new SocialLinksEditPage(this.CurrentPageViewModel as IEditViewModel<SocialLink>);
             }
+            if (this.CurrentPageViewModel is IEditViewModel<Interest>)
+            {
+                this.CurrentPage = new InterestEditPage(this.CurrentPageViewModel as IEditViewModel<Interest>);
+            }
         }
 
         private async void Delete()
@@ -196,6 +214,10 @@ namespace Pair.App.Desktop.ViewModels
             if (CurrentPageViewModel is IEditViewModel<User>)
             {
                 await this._usersViewModel.DeleteCommand.ExecuteAsync();
+            }
+            if (CurrentPageViewModel is IEditViewModel<Interest>)
+            {
+                await this._interestsViewModel.DeleteCommand.ExecuteAsync();
             }
             else
             {
@@ -229,6 +251,14 @@ namespace Pair.App.Desktop.ViewModels
                 editVm.Item = _usersViewModel.SelectedItem;
 
                 CurrentPage = new UserEditPage(editVm);
+            }
+            if(CurrentPage is InterestsPage)
+            {
+                var editVm = (CurrentPageViewModel as IEditViewModel<Interest>);
+
+                editVm.Item = _interestsViewModel.SelectedItem;
+
+                CurrentPage = new InterestEditPage(editVm);
             }
         }
 
