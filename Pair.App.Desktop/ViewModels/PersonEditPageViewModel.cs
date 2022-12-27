@@ -1,4 +1,5 @@
-﻿using iText.Layout.Element;
+﻿using Dapper;
+using iText.Layout.Element;
 using Microsoft.Win32;
 using MvvmCross.Commands;
 using Pair.App.Desktop.ViewModels.Common;
@@ -8,7 +9,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Automation;
 
 namespace Pair.App.Desktop.ViewModels
@@ -146,6 +149,8 @@ namespace Pair.App.Desktop.ViewModels
 
         protected override async void Add()
         {
+            _item.Id = (int)await _repository.Insert(_item);
+
             foreach (var interestPerson in _interestsPersons)
             {
                 await _interestsPersonsRepository.Insert(interestPerson);
@@ -173,12 +178,17 @@ namespace Pair.App.Desktop.ViewModels
             {
                 PersonInterests.Add(SelectedInterest);
 
-                var personId = (int)await _repository.Insert(_item);
+                if (_item.Id == 0)
+                {
+                    MessageBox.Show("Нужно добавить человека в БД");
+                    return;
+                }
+                
                 var interestId = SelectedInterest.Id;
 
                 _interestsPersons.Add(new InterestsPersons
                 {
-                    PersonId = personId,
+                    PersonId = _item.Id,
                     InterestId = interestId
 
                 });
@@ -187,9 +197,16 @@ namespace Pair.App.Desktop.ViewModels
             RaisePropertyChanged(nameof(PersonInterests));
         }
 
-        private void RemoveInterest()
+        private async void RemoveInterest()
         {
             PersonInterests.Remove(SelectedInterest);
+
+            var pairs = await _interestsPersonsRepository.Get();
+
+            var personPair = pairs.AsList().Find(i => i.PersonId == _item.Id && i.InterestId == _selectedInterest.Id);
+            
+            await _interestsPersonsRepository.Delete(personPair);
+            
             RaisePropertyChanged(nameof(PersonInterests));
         }
 

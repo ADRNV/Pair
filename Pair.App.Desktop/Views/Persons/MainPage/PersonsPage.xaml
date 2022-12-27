@@ -24,18 +24,18 @@
                 <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="{StaticResource Age}" Binding="{Binding Age}"/>
                 <DataGridTextColumn Header="{StaticResource Bio}" Binding="{Binding Bio}"/>
-                <DataGridTemplateColumn Header="{StaticResource InterestsTableName}">
+                <DataGridTemplateColumn>
+                    
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DataGridCell>
-                                <ComboBox ItemsSource="{Binding Interests}">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding InterestName}"/>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                            </DataGridCell>
+                            <ComboBox Width="100" SelectedIndex="0"
+                                        ItemsSource="{Binding Path=Interests}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding InterestName}"/>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
