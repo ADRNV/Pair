@@ -25,7 +25,7 @@ namespace Pair.Infrastructure.DapperORM
 
             return await _connection.QueryAsync<Person, Interest, Person>(sql, (p, i) =>
             {
-                p.Interests?.Add(i);
+                p.Interests.Add(i);
 
                 return p;
             });

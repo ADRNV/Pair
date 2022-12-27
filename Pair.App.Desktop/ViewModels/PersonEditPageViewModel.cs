@@ -19,7 +19,7 @@ namespace Pair.App.Desktop.ViewModels
 
         private readonly IInterestsPersonsRepository _interestsPersonsRepository;
 
-        private InterestsPersons _interestsPersons = new();
+        private List<InterestsPersons> _interestsPersons = new();
 
         private ObservableCollection<Interest> _interests;
 
@@ -42,7 +42,7 @@ namespace Pair.App.Desktop.ViewModels
             }
         }
 
-        public ObservableCollection<Interest> PersonInterests { get; set; }
+        public ObservableCollection<Interest> PersonInterests { get; set; } = new();
 
         public Interest SelectedInterest
         {
@@ -124,7 +124,7 @@ namespace Pair.App.Desktop.ViewModels
 
         public IMvxCommand AddInteresCommand => new MvxCommand(AddInterest);
 
-        public IMvxCommand RemoveInteresCommand => new MvxCommand(RemoveInterest);
+        public IMvxCommand RemoveInteresCommand => new MvxCommand(RemoveInterest, CanModifyInterests);
 
         private async void AddImage()
         {
@@ -146,38 +146,57 @@ namespace Pair.App.Desktop.ViewModels
 
         protected override async void Add()
         {
-            _interestsPersons.PersonId = (int)await _repository.Insert(_item);
-            _interestsPersons.InterestId = SelectedInterest.Id;
-            await _interestsPersonsRepository.Insert(_interestsPersons);
+            foreach (var interestPerson in _interestsPersons)
+            {
+                await _interestsPersonsRepository.Insert(interestPerson);
+            }
+            _interestsPersons.Clear();
         }
 
         protected override async void Edit()
         {
-            _interestsPersons.PersonId = _item.Id;
+            var interestsPersons = new InterestsPersons();
+            interestsPersons.PersonId = _item.Id;
             await _repository.Update(_item);
-            _interestsPersons.InterestId = SelectedInterest.Id;
-            await _interestsPersonsRepository.Update(_interestsPersons);
+            interestsPersons.InterestId = SelectedInterest.Id;
+            await _interestsPersonsRepository.Update(interestsPersons);
         }
 
         private async void AddInterest()
         {
-            PersonInterests = new ObservableCollection<Interest>(await _interestsRepository.Get());
-            Interests = new ObservableCollection<Interest>(await _interestsRepository.Get());
-
-            if (SelectedInterest is not null)
+            if (Interests is null)
             {
-               
+                Interests = new ObservableCollection<Interest>(await _interestsRepository.Get());
             }
 
+            if(SelectedInterest is not null)
+            {
+                PersonInterests.Add(SelectedInterest);
+
+                var personId = (int)await _repository.Insert(_item);
+                var interestId = SelectedInterest.Id;
+
+                _interestsPersons.Add(new InterestsPersons
+                {
+                    PersonId = personId,
+                    InterestId = interestId
+
+                });
+            }
+          
             RaisePropertyChanged(nameof(PersonInterests));
         }
 
         private void RemoveInterest()
         {
+            PersonInterests.Remove(SelectedInterest);
             RaisePropertyChanged(nameof(PersonInterests));
         }
 
         private bool CanAddImage() =>
-            !string.IsNullOrEmpty(PersonName); 
+            !string.IsNullOrEmpty(PersonName);
+
+        private bool CanModifyInterests() =>
+            SelectedInterest is not null;
     }
 }

@@ -25,8 +25,8 @@
             <Label Content="{StaticResource Name}"/>
             <Label Content="{StaticResource Age}"/>
             <Label Content="{StaticResource Bio}"/>
-            <Label Content="{StaticResource Sex}"/>
             <Label Content="{StaticResource InterestName}"/>
+            <Label Content="{StaticResource Sex}"/>
             <StackPanel>
                 <Label Content="{StaticResource SocialCredit}"/>
                 <TextBox Text="{Binding ElementName=SocialRatingSlider, Path=Value, StringFormat={}{0:0}, Mode=TwoWay}"/>
@@ -38,7 +38,7 @@
             <TextBox Text="{Binding PersonAge}"/>
             <TextBox Text="{Binding PersonBio}"/>
             <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding Interests}" Width="200" SelectedItem="{Binding SelectedInterest}">
+                <ComboBox ItemsSource="{Binding Interests}" Width="200" SelectedItem="{Binding SelectedInterest, Mode=OneWayToSource}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding InterestName}"/>
@@ -47,6 +47,13 @@
                 </ComboBox>
                 <Button Content="{StaticResource Add}" Command="{Binding AddInteresCommand}"/>
                 <Button Content="{StaticResource Delete}" Command="{Binding RemoveInteresCommand}"/>
+                <ComboBox Width="200" ItemsSource="{Binding PersonInterests}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding InterestName}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
             <ComboBox ItemsSource="{StaticResource Genders}" SelectedItem="{Binding PersonSex}"/>
             <Slider x:Name="SocialRatingSlider" Minimum="-1000" Maximum="1000" Value="{Binding SocialCredit}"/>
