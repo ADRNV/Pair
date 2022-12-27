@@ -21,7 +21,7 @@ namespace Pair.Infrastructure.DapperORM
 
         public async override Task<IEnumerable<Person>> Get()
         {
-            var sql = @"SELECT DISTINCT P.Id, P.Age, P.Bio, P.ImageUri, P.Sex, P.SocialCredit, I.Id, I.InterestName 
+            var sql = @"SELECT DISTINCT P.Id, P.Name, P.Age, P.Bio, P.ImageUri, P.Sex, P.SocialCredit, I.Id, I.InterestName 
                         FROM Persons P 
                         INNER JOIN InterestsPersons IP ON IP.PersonId = P.Id 
                         INNER JOIN Interests I ON IP.PersonId = P.Id ORDER BY P.Id";

@@ -17,18 +17,17 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding ImageUri}" MaxHeight="200" MaxWidth="200"/>
+                            <Image Source="{Binding ImageUri}" MaxHeight="100" MaxWidth="100"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="{StaticResource Name}" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="{StaticResource Age}" Binding="{Binding Age}"/>
                 <DataGridTextColumn Header="{StaticResource Bio}" Binding="{Binding Bio}"/>
-                <DataGridTemplateColumn>
-                    
+                <DataGridTemplateColumn Header="{StaticResource InterestName}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox Width="100" SelectedIndex="0"
+                            <ComboBox Width="50" SelectedIndex="0"
                                         ItemsSource="{Binding Path=Interests}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>

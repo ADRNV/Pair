@@ -123,7 +123,7 @@ namespace Pair.App.Desktop.ViewModels
             }
         }
 
-        public IMvxCommand AddImageCommand => new MvxCommand(AddImage, CanAddImage);
+        public IMvxCommand AddImageCommand => new MvxCommand(AddImage);
 
         public IMvxCommand AddInteresCommand => new MvxCommand(AddInterest);
 
@@ -131,7 +131,7 @@ namespace Pair.App.Desktop.ViewModels
 
         private async void AddImage()
         {
-            var storePath = @$"{Environment.CurrentDirectory}\ImagesStore\{_item.Id}{_item.Name}";
+            var storePath = @$"{Environment.CurrentDirectory}\ImagesStore\{_item.Id}{_item.Name}{Guid.NewGuid()}";
             
             FileDialog fileDialog = new OpenFileDialog();
 
@@ -141,7 +141,7 @@ namespace Pair.App.Desktop.ViewModels
 
             if (fileDialog.FileName != "")
             {
-                File.Move(fileDialog.FileName, storePath);
+                File.Copy(fileDialog.FileName, storePath);
                 
                 ImageLink = storePath;
             }
