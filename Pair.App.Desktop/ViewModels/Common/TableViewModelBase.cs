@@ -43,13 +43,24 @@ namespace Pair.App.Desktop.ViewModels.Common
 
         public virtual IMvxAsyncCommand DeleteCommand => new MvxAsyncCommand(Delete, CanDelete);
 
+        public virtual IMvxAsyncCommand<string> SearchCommand => new MvxAsyncCommand<string>(Search);
+
         protected async virtual Task Delete()
         {
             await _repository.Delete(SelectedItem);
+
+            Items = new ObservableCollection<T>(await _repository.Get());
         }
 
         protected virtual bool CanDelete() => _selectedItem is not null;
-        
+
+        protected virtual async Task Search(string obj)
+        {
+            var items = await _repository.Find(obj);
+
+            _items = new ObservableCollection<T>(items);
+        }
+
         public virtual async Task<IEnumerable<T>> Load()
         {
             var items = await _repository.Get();

@@ -1,8 +1,11 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Ninject.Modules;
 using Pair.Core.Models;
 using Pair.Core.Repositories;
 using Pair.Infrastructure.DapperORM;
+using Pair.Infrastructure.EF;
+using Pair.Infrastructure.EF.Security;
 
 namespace Pair.App.Desktop.IoC
 {
@@ -14,15 +17,29 @@ namespace Pair.App.Desktop.IoC
                 .AddJsonFile(@"AppSetting.json", false)
                 .Build();
 
-            this.Bind<IRepository<Person>>()
+            this.Bind<IPersonsRepository>()
                 .To<PersonsRepository>()
                 .InSingletonScope()
                 .WithConstructorArgument("configuration", configuration);
 
-            this.Bind<IRepository<SocialLink>>()
+            this.Bind<ISocialLinksRepository>()
                 .To<SocialLinksRepository>()
                 .InSingletonScope()
                 .WithConstructorArgument("configuration", configuration);
+
+            //Replace with AddEntityFrameWorkStorage() extension
+
+            var connectionString = configuration.GetConnectionString("AuthDbConnection");
+
+            this.Bind<AuthContext>()
+                .ToSelf()
+                .WithConstructorArgument("connectionString", connectionString);
+
+            this.Bind<IAuthRepository<User>>()
+                .To<UsersRepository>();
+
+            this.Bind<IRepository<User>>()
+                .To<UsersRepository>();
         }
     }
 }

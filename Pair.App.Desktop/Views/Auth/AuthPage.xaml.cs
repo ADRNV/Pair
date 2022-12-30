@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using Pair.App.Desktop.ViewModels;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -20,9 +15,15 @@ namespace Pair.App.Desktop.Views.Auth
     /// </summary>
     public partial class AuthPage : Page
     {
-        public AuthPage()
+        private AuthViewModel _authViewModel;
+
+        public AuthPage(AuthViewModel authViewModel)
         {
+            _authViewModel = authViewModel;
+
             InitializeComponent();
+
+            this.DataContext = _authViewModel;
         }
     }
 }

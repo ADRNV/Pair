@@ -6,7 +6,7 @@ namespace Pair.App.Desktop.ViewModels
 {
     public class PersonEditPageViewModel : EditViewModelBase<Person>
     {
-        public PersonEditPageViewModel(IRepository<Person> repository) : base(repository)
+        public PersonEditPageViewModel(IPersonsRepository repository) : base(repository)
         {
 
         }

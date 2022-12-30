@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[Persons]
 (
 	[Id] INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-	[Name] VARCHAR(MAX),
-	[Bio] VARCHAR(MAX),
+	[Name] NVARCHAR(MAX),
+	[Bio] NVARCHAR(MAX),
 	[Age] INT NOT NULL,
-	[Sex] VARCHAR(MAX),
+	[Sex] NVARCHAR(MAX),
 )

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pair.App.Desktop.ViewModels.Common
+﻿namespace Pair.App.Desktop.ViewModels.Common
 {
     public interface ICommonEditViewModel
     {

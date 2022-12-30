@@ -2,7 +2,6 @@
 using Pair.Core.Repositories;
 using System;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Pair.App.Desktop.ViewModels.Common
 {
@@ -17,6 +16,11 @@ namespace Pair.App.Desktop.ViewModels.Common
             _repository = repository;
         }
 
+        public EditViewModelBase(T item)
+        {
+            _item = item;
+        }
+
         public T Item
         {
             get => _item!;
@@ -28,13 +32,22 @@ namespace Pair.App.Desktop.ViewModels.Common
             }
         }
 
-        public IMvxAsyncCommand AddCommand => new MvxAsyncCommand(Add);
+        public IMvxCommand AddCommand => new MvxCommand(Add);
+
+        public IMvxCommand EditCommand => new MvxCommand(Edit);
 
         public IMvxCommand CancelCommand => new MvxCommand(Cancel);
 
-        protected async virtual Task Add()
+        protected virtual void Add()
         {
-           await _repository.Insert(Item);
+             _repository.Insert(Item);
+        }
+
+        protected virtual void Edit()
+        {
+            _repository.Update(Item);
+
+            _item = new T();
         }
 
         protected virtual void Cancel()

@@ -11,5 +11,7 @@
         Task<IEnumerable<T>> Get();
 
         Task<T> Get(int id);
+
+        Task<IEnumerable<T>> Find(params string[] searchParams);
     }
 }

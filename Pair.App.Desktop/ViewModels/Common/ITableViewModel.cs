@@ -8,6 +8,10 @@ namespace Pair.App.Desktop.ViewModels.Common
     {
         Task<IEnumerable<T>> Load();
 
+        public T SelectedItem { get; set; }
+
         IMvxAsyncCommand DeleteCommand { get; }
+
+        IMvxAsyncCommand<string> SearchCommand { get; }
     }
 }

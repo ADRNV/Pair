@@ -9,6 +9,11 @@ namespace Pair.App.Desktop
     /// </summary>
     public partial class App : Application
     {
+        public static bool IsSystemAdmin
+        {
+            get;
+            set;
+        }
 
         public App()
         {

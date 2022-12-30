@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Новая папка\**" />
+    <EmbeddedResource Remove="Новая папка\**" />
+    <None Remove="Новая папка\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Mapster" Version="7.3.0" />
   </ItemGroup>
 

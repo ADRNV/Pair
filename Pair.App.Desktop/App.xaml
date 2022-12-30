@@ -32,7 +32,14 @@
             <sys:String x:Key="Login">Логин</sys:String>
             <sys:String x:Key="Password">Пароль</sys:String>
             <sys:String x:Key="Signin">Войти</sys:String>
-            <sys:String x:Key="Register">Зарешестрировать</sys:String>
+            <sys:String x:Key="Register">Зарегестироватся</sys:String>
+            <sys:String x:Key="AssignWith">Связан с:</sys:String>
+            <sys:String x:Key="Exit">Выйти</sys:String>
+            <sys:String x:Key="FromApp">из приложения</sys:String>
+            <sys:String x:Key="FromUser">из сеанса</sys:String>
+            <sys:String x:Key="Permissions">Права</sys:String>
+            <sys:String x:Key="Users">Пользователи</sys:String>
+            <sys:String x:Key="Id">Id</sys:String>
             <vms:ViewModelLocator x:Key="ViewModelLocator"/>
         </ResourceDictionary>
     </Application.Resources>
