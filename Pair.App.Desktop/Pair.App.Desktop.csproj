@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Pair.Core\Pair.Core.csproj" />
     <ProjectReference Include="..\Pair.Infrastructure\Pair.Infrastructure.csproj" />
+    <ProjectReference Include="..\Pair.Services\Pair.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

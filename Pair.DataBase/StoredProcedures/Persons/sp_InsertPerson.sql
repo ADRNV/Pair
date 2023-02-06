@@ -3,8 +3,7 @@
 	@Bio NVARCHAR(MAX),
 	@Age TINYINT,
 	@Sex NVARCHAR(MAX),
-	@ImageUri NVARCHAR(MAX),
 	@SocialCredit INT
 AS
-	INSERT INTO Persons VALUES(@Name, @Bio, @Age, @Sex, @ImageUri, @SocialCredit);
+	INSERT INTO Persons VALUES(@Name, @Bio, @Age, @Sex, @SocialCredit);
 RETURN 0

@@ -7,5 +7,5 @@
 	@ImageUri VARCHAR(MAX),
 	@SocialCredit INT
 AS
-	UPDATE Persons SET Name = @Name, Bio = @Bio, Age = @Age, Sex = @Sex, ImageUri = @ImageUri, SocialCredit = @SocialCredit WHERE Id = @id
+	UPDATE Persons SET Name = @Name, Bio = @Bio, Age = @Age, Sex = @Sex, SocialCredit = @SocialCredit WHERE Id = @id
 RETURN 0
