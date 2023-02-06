@@ -20,7 +20,8 @@
         <KeyBinding Key="D" Modifiers="Alt" Command="{Binding DeleteCommand}"/>
         <KeyBinding Key="P" Modifiers="Alt" Command="{Binding ToTablePageCommand}" CommandParameter="1"/>
         <KeyBinding Key="S" Modifiers="Alt" Command="{Binding ToTablePageCommand}" CommandParameter="2"/>
-        <KeyBinding Key="U" Modifiers="Alt" Command="{Binding ToTablePageCommand}" CommandParameter="3"/>
+        <KeyBinding Key="I" Modifiers="Alt" Command="{Binding ToTablePageCommand}" CommandParameter="3"/>
+        <KeyBinding Key="U" Modifiers="Alt" Command="{Binding ToTablePageCommand}" CommandParameter="4"/>
     </Window.InputBindings>
     <DockPanel>
         <Menu DockPanel.Dock="Top" VerticalAlignment="Center" Background="{StaticResource MaterialDesignDarkBackground}">
@@ -35,7 +36,8 @@
             <MenuItem Header="{StaticResource Tables}" IsEnabled="{Binding UiPermissions.CanRead, NotifyOnSourceUpdated=True}">
                 <MenuItem x:Name="personsTable" Header="{StaticResource PersonsTableName}" Command="{Binding ToTablePageCommand}" CommandParameter="1"/>
                 <MenuItem Header="{StaticResource SocialLinksTableName}" Command="{Binding ToTablePageCommand}" CommandParameter="2"/>
-                <MenuItem Header="{StaticResource Users}" Command="{Binding ToTablePageCommand}" CommandParameter="3" IsEnabled="{Binding UiPermissions.CanManage, NotifyOnSourceUpdated=True}"/>
+                <MenuItem Header="{StaticResource InterestsTableName}" Command="{Binding ToTablePageCommand}" CommandParameter="3"/>
+                <MenuItem Header="{StaticResource Users}" Command="{Binding ToTablePageCommand}" CommandParameter="4" IsEnabled="{Binding UiPermissions.CanManage, NotifyOnSourceUpdated=True}"/>
             </MenuItem>
 
             <MenuItem Header="{StaticResource Search}" IsEnabled="{Binding UiPermissions.CanRead}">

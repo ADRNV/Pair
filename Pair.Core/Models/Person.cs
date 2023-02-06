@@ -10,10 +10,15 @@
 
         public int Age { get; set; }
 
-        public IList<SocialLink>? SocialLinks { get; set; }
+        public IList<SocialLink> SocialLinks { get; set; }
+
+        public List<Interest> Interests { get; set; } = new();
 
         public string Sex { get; set; } = string.Empty;
 
-        public byte[]? Photo { get; set; }
+        public string ImageUri { get; set; }
+
+        public int SocialCredit { get; set; }
+
     }
 }

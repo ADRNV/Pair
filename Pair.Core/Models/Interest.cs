@@ -1,9 +1,9 @@
 ﻿namespace Pair.Core.Models
 {
-    public class Photo
+    public class Interest
     {
         public int Id { get; set; }
 
-        public byte[] Image { get; set; }
+        public string InterestName { get; set; }
     }
 }

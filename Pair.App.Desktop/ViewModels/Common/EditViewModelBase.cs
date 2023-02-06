@@ -32,11 +32,11 @@ namespace Pair.App.Desktop.ViewModels.Common
             }
         }
 
-        public IMvxCommand AddCommand => new MvxCommand(Add);
+        public virtual IMvxCommand AddCommand => new MvxCommand(Add);
 
-        public IMvxCommand EditCommand => new MvxCommand(Edit);
+        public virtual IMvxCommand EditCommand => new MvxCommand(Edit);
 
-        public IMvxCommand CancelCommand => new MvxCommand(Cancel);
+        public virtual IMvxCommand CancelCommand => new MvxCommand(Cancel);
 
         protected virtual void Add()
         {

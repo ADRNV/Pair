@@ -27,7 +27,14 @@ namespace Pair.App.Desktop.IoC
                 .InSingletonScope()
                 .WithConstructorArgument("configuration", configuration);
 
+            this.Bind<IInterestsRepository>()
+                .To<InterestsRepository>()
+                .WithConstructorArgument("configuration", configuration);
             //Replace with AddEntityFrameWorkStorage() extension
+
+            this.Bind<IInterestsPersonsRepository>()
+                .To<InterestsPersonsRepository>()
+                .WithConstructorArgument("configuration", configuration);
 
             var connectionString = configuration.GetConnectionString("AuthDbConnection");
 
