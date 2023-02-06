@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Photos]
+(
+	[Id] INT NOT NULL PRIMARY KEY,
+	[PersonId] INT NULL FOREIGN KEY REFERENCES Persons(Id),
+	CONSTRAINT fk_person_id_photos FOREIGN KEY(PersonId) REFERENCES Persons(Id) ON DELETE CASCADE,
+	[Uri] VARCHAR(MAX) 
+)

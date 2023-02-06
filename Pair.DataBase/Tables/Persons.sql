@@ -5,6 +5,5 @@
 	[Bio] NVARCHAR(MAX),
 	[Age] INT NOT NULL,
 	[Sex] NVARCHAR(MAX),
-	[ImageUri] NVARCHAR(MAX),
 	[SocialCredit] INT,
 )
